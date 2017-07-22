@@ -1,3 +1,11 @@
 <resources>
+    <!-- Oferecer carona -->
     <string name="titulo_oferecer_caronas_activity">Oferecer Caronas</string>
+    <string name="confirmar_rota">Confirmar rota</string>
+    <string name="seu_destino">Seu destino</string>
+    <string name="sua_localizacao">Sua localização atual</string>
+    <string name="descricao_localizacao_usuario">Icone localização do usuário</string>
+    <string name="descricao_destina_usuario">Icone destino do usuário</string>
+
+    <string name="title_activity_maps">Map</string>
 </resources>

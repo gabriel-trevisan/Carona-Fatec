@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.gabriel.carona_fatec.BuscaRotasActivity">
+    tools:context="com.example.gabriel.carona_fatec.OferecerCaronasActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,17 +25,21 @@
                 android:layout_height="24dp"
                 android:src="@drawable/localizacao_usuario"
                 android:layout_gravity="center"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="@string/descricao_localizacao_usuario" />
 
             <EditText
                 android:id="@+id/edtLocalizacaoUsuario"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:height="40dp"
                 android:background="@drawable/shape"
-                android:hint="Sua localização atual"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:hint="@string/sua_localizacao"
                 android:textColor="@color/colorBranco"
                 android:textColorHint="@color/colorBranco"
                 android:layout_marginLeft="20dp"
@@ -54,23 +58,26 @@
                 android:layout_height="24dp"
                 android:src="@drawable/destino_usuario"
                 android:layout_gravity="center"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="@string/descricao_destina_usuario" />
 
             <EditText
                 android:id="@+id/edtDestinoUsuario"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:height="40dp"
                 android:background="@drawable/shape"
-                android:hint="Seu destino"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:hint="@string/seu_destino"
                 android:textColor="@color/colorBranco"
                 android:textColorHint="@color/colorBranco"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
         </LinearLayout>
-
 
     </LinearLayout>
 
@@ -81,13 +88,44 @@
         android:gravity="bottom"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context="com.example.gabriel.carona_fatec.OferecerCaronasActivity" />
+
+            <!--
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorLaranja"
+                    android:clickable="true"
+                    app:fabSize="normal"
+                    app:srcCompat="@drawable/navegar"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="12dp" />
+                -->
+
+        </RelativeLayout>
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorVerde"
-            android:text="Buscar"
+            android:text="@string/confirmar_rota"
             android:textColor="@color/colorBranco" />
 
     </LinearLayout>
