@@ -10,7 +10,7 @@
     </style>
 
     <style name="ActionBarRemoveShadow" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <!-- Remove sobra action bar-->
+        <!-- Remove sombra action bar-->
         <item name="elevation">0dp</item>
     </style>
 
