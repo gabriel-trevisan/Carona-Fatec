@@ -1,11 +1,19 @@
 <resources>
     <!-- Oferecer carona -->
     <string name="titulo_oferecer_caronas_activity">Oferecer Caronas</string>
-    <string name="confirmar_rota">Confirmar rota</string>
+    <string name="buscar_rota">Buscar rota</string>
     <string name="seu_destino">Seu destino</string>
     <string name="sua_localizacao">Sua localização atual</string>
+    <string name="raio">Raio</string>
     <string name="descricao_localizacao_usuario">Icone localização do usuário</string>
     <string name="descricao_destina_usuario">Icone destino do usuário</string>
+    <string name="titulo_instrucoes_oferecer_carona">Instruções</string>
+    <string name="passos_oferecer_carona">1. No primeiro campo, informe o endereço de sua localização.
+        \n2. No segundo campo, informe o endereço de seu destino.
+        \n3. Após preenchido os dois campos, pressione o botão: Confirmar rota. O aplicativo buscará a melhor rota até seu destino.</string>
 
+    <!-- Confirmar Rota -->
+
+    <string name="confirmar_rota">Confirmar rota</string>
     <string name="title_activity_maps">Map</string>
 </resources>

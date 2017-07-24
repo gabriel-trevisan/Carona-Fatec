@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
@@ -79,45 +79,78 @@
                 android:layout_marginRight="20dp"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/raio"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="@string/raio" />
+
+            <EditText
+                android:id="@+id/edtRaio"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape"
+                android:hint="@string/raio"
+                android:inputType="number"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:textColor="@color/colorBranco"
+                android:textColorHint="@color/colorBranco" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:gravity="bottom"
+        android:layout_weight="5"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/titulo_instrucoes_oferecer_carona"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-                <fragment
-                    android:id="@+id/map"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:context="com.example.gabriel.carona_fatec.OferecerCaronasActivity" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:lineSpacingExtra="6sp"
+            android:paddingLeft="8sp"
+            android:paddingRight="5sp"
+            android:text="@string/passos_oferecer_carona"
+            android:textSize="15sp" />
 
-            <!--
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/floatingActionButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorLaranja"
-                    android:clickable="true"
-                    app:fabSize="normal"
-                    app:srcCompat="@drawable/navegar"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="12dp" />
-                -->
+    </LinearLayout>
 
-        </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/button"
@@ -125,9 +158,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorVerde"
-            android:text="@string/confirmar_rota"
-            android:textColor="@color/colorBranco" />
+            android:text="@string/buscar_rota"
+            android:textColor="@color/colorBranco"
+            android:onClick="buscarRota"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
 </LinearLayout>
