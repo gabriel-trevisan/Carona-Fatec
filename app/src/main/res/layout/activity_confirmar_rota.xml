@@ -22,6 +22,7 @@
         android:layout_gravity="bottom"
         android:background="@color/colorVerde"
         android:text="@string/confirmar_rota"
-        android:textColor="@color/colorBranco" />
+        android:textColor="@color/colorBranco"
+        android:onClick="confirmarRota"/>
 
 </LinearLayout>

@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.gabriel.carona_fatec.api.model.Rotas;
+import com.example.gabriel.carona_fatec.api.service.RotasServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -26,12 +30,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     public String stringAtual;
     public String stringDestino;
+
+    String rotaEncodePath;
 
     public double lat;
     public double lng;
@@ -69,11 +83,13 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
                             .mode(TravelMode.DRIVING)
                             .await();
 
-            System.out.println(result.geocodedWaypoints);
-            System.out.println(result.geocodedWaypoints.length);
-            System.out.println(result.geocodedWaypoints[0].geocoderStatus);
-            System.out.println(result.geocodedWaypoints[1].geocoderStatus);
-            System.out.println(result.geocodedWaypoints[1].types[0]);
+            //System.out.println(result.geocodedWaypoints);
+            //System.out.println(result.geocodedWaypoints.length);
+            //System.out.println(result.geocodedWaypoints[0].geocoderStatus);
+            //System.out.println(result.geocodedWaypoints[1].geocoderStatus);
+            //System.out.println(result.geocodedWaypoints[1].types[0]);
+            System.out.println(result.routes[0].overviewPolyline.decodePath());
+            rotaEncodePath = result.routes[0].overviewPolyline.getEncodedPath();
 
 
             Polyline line = mMap.addPolyline(new PolylineOptions()
@@ -97,6 +113,7 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
 
     }
 
+    //Converter maps model LatLng em LatLng android.gms.maps.model.LatLng
     public List<LatLng> listaLatLngJavaApi(List<com.google.maps.model.LatLng> points){
 
         List<String> novaLista = new ArrayList<String>();
@@ -111,7 +128,7 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         return listLatLng;
     }
 
-
+    //Converter string em LatLng
     public LatLng converterStringLatLng(String stringLatLng){
 
             String atualLocalizacao[] = stringLatLng.split(",");
@@ -125,6 +142,49 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         return atualLocalizacaoLatLng;
     }
 
+    public void confirmarRota(View v){
 
+        Rotas rotaUsuario = new Rotas(rotaEncodePath);
+
+        enviarRequisicaoApi(rotaUsuario);
+
+    }
+
+    private void enviarRequisicaoApi(Rotas rotaUsuario) {
+
+        // Testa retorno http
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+
+        httpClient.addInterceptor(logging);
+        //End
+
+        //Objeto para requisições http
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.101:8080/Web-Service-Tamo-Junto-Carona/v1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
+                .build();
+
+        RotasServices rota = retrofit.create(RotasServices.class);
+        Call<Rotas> call = rota.inserirRota(rotaUsuario);
+
+        call.enqueue(new Callback<Rotas>() {
+            @Override
+            public void onResponse(Call<Rotas> call, Response<Rotas> response) {
+                Toast.makeText(ConfirmarRotaActivity.this, "Sucesso: " + response.body().getRota(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Rotas> call, Throwable t) {
+                Toast.makeText(ConfirmarRotaActivity.this, "Erro", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
 
 }
