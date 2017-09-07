@@ -1,6 +1,6 @@
 <resources>
     <!-- Oferecer carona -->
-    <string name="titulo_oferecer_caronas_activity">Oferecer Caronas</string>
+    <string name="titulo_activity_oferecer_caronas">Oferecer Caronas</string>
     <string name="buscar_rota">Buscar rota</string>
     <string name="seu_destino">Seu destino</string>
     <string name="sua_localizacao">Sua localização atual</string>
@@ -13,7 +13,17 @@
         \n3. Após preenchido os dois campos, pressione o botão: Confirmar rota. O aplicativo buscará a melhor rota até seu destino.</string>
 
     <!-- Confirmar Rota -->
-
+    <string name="titulo_confirmar_caronas_activity">Confirmar Carona</string>
     <string name="confirmar_rota">Confirmar rota</string>
     <string name="title_activity_maps">Map</string>
+
+    <!-- Login -->
+    <string name="titulo_activity_login">Login</string>
+    <string name="email">E-mail</string>
+    <string name="exemplo_email">aluno@fatec.sp.gov.br</string>
+    <string name="senha">Senha</string>
+    <string name="logar">Logar</string>
+    <string name="esqueci_senha">Esqueci minha senha</string>
+    <string name="novo_cadastro">Nova cadastro</string>
+
 </resources>
