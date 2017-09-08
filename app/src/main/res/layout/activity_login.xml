@@ -97,6 +97,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:text="@string/novo_cadastro"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="novoCadastro"/>
 
 </RelativeLayout>

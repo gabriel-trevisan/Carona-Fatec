@@ -1,4 +1,5 @@
 <resources>
+
     <!-- Oferecer carona -->
     <string name="titulo_activity_oferecer_caronas">Oferecer Caronas</string>
     <string name="buscar_rota">Buscar rota</string>
@@ -24,6 +25,30 @@
     <string name="senha">Senha</string>
     <string name="logar">Logar</string>
     <string name="esqueci_senha">Esqueci minha senha</string>
-    <string name="novo_cadastro">Nova cadastro</string>
+    <string name="novo_cadastro">Novo cadastro</string>
+
+    <!-- Cadastro -->
+    <string name="titulo_activity_cadastro">Cadastro</string>
+    <string name="nome">Nome</string>
+    <string name="confirmar_senha">Confirmar senha</string>
+    <string name="turma">Turma</string>
+    <string name="numero_celulas">Número Celular</string>
+    <string name="perfil">Perfil</string>
+    <string name="cadastro">Cadastrar</string>
+    <string name="exemplo_numero_celular">(dd)9xxxx-xxxx</string>
+    <string-array name="turmas_array">
+        <item> Gestão Empresarial (EaD) </item>
+        <item> Análise e Desenv. de Sistemas </item>
+        <item> Comércio Exterior </item>
+        <item> Gestão Empresarial </item>
+        <item> Logística Aeroportuária </item>
+        <item> Redes de Computadores </item>
+        <item> Gestão de Serviços </item>
+        <item> Nenhuma </item>
+    </string-array>
+    <string-array name="perfil_array">
+        <item>Oferecer carona</item>
+        <item>Buscar carona</item>
+    </string-array>
 
 </resources>
