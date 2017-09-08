@@ -17,9 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".OferecerCaronasActivity"
             android:label="@string/titulo_activity_oferecer_caronas">
+
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -42,6 +44,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".CadastroActivity"
+            android:label="Cadastro"
+            android:parentActivityName=".LoginActivity">
+
         </activity>
     </application>
 
