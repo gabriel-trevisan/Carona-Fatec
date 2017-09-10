@@ -4,25 +4,23 @@ package com.example.gabriel.carona_fatec.api.model;
  * Created by gabriel on 08/09/2017.
  */
 
-public class Usuarios {
+public class Usuario {
 
     private String nome;
     private String email;
     private String senha;
     private String turma;
     private int numeroCelular;
-    private String perfil;
+    private int perfil;
     private Rotas Rotas;
 
-    public Usuarios(String nome, String email, String senha, String turma, int numeroCelular, String perfil){
-
-        this.nome = nome;
+    public Usuario(String email, String nome, int numeroCelular, int perfil, String senha, String turma){
         this.email = email;
-        this.senha = senha;
-        this.turma = turma;
+        this.nome = nome;
         this.numeroCelular = numeroCelular;
         this.perfil = perfil;
-
+        this.senha = senha;
+        this.turma = turma;
     }
 
     public String getNome() {
@@ -65,11 +63,11 @@ public class Usuarios {
         this.numeroCelular = numeroCelular;
     }
 
-    public String getPerfil() {
+    public int getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(String perfil) {
+    public void setPerfil(int perfil) {
         this.perfil = perfil;
     }
 
@@ -79,6 +77,11 @@ public class Usuarios {
 
     public void setRotas(Rotas rotas) {
         Rotas = rotas;
+    }
+
+    public String toString(){
+
+        return this.nome + " " + this.email + " " + this.senha + " " + this.numeroCelular;
     }
 
 }

@@ -20,7 +20,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/edtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -33,14 +33,14 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/edtNome"
+        android:layout_alignStart="@+id/edtNome"
+        android:layout_below="@+id/edtNome"
         android:text="@string/email"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView7"
@@ -54,14 +54,14 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_below="@+id/editText4"
+        android:layout_alignLeft="@+id/edtEmail"
+        android:layout_alignStart="@+id/edtEmail"
+        android:layout_below="@+id/edtEmail"
         android:text="@string/senha"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/edtSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView8"
@@ -74,14 +74,14 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText5"
-        android:layout_alignStart="@+id/editText5"
-        android:layout_below="@+id/editText5"
+        android:layout_alignLeft="@+id/edtSenha"
+        android:layout_alignStart="@+id/edtSenha"
+        android:layout_below="@+id/edtSenha"
         android:text="@string/confirmar_senha"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/edtConfirmarSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -94,9 +94,9 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText6"
-        android:layout_alignStart="@+id/editText6"
-        android:layout_below="@+id/editText6"
+        android:layout_alignLeft="@+id/edtConfirmarSenha"
+        android:layout_alignStart="@+id/edtConfirmarSenha"
+        android:layout_below="@+id/edtConfirmarSenha"
         android:text="@string/turma"
         android:textStyle="bold" />
 
@@ -123,7 +123,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/edtNumeroCelular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -137,9 +137,9 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8"
-        android:layout_below="@+id/editText8"
+        android:layout_alignLeft="@+id/edtNumeroCelular"
+        android:layout_alignStart="@+id/edtNumeroCelular"
+        android:layout_below="@+id/edtNumeroCelular"
         android:text="@string/perfil"
         android:textStyle="bold" />
 
@@ -156,7 +156,7 @@
         android:layout_marginRight="156dp"></Spinner>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/cadastro"
@@ -164,6 +164,7 @@
         android:background="@color/colorVerde"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="cadastrarUsuario"/>
 
 </RelativeLayout>
