@@ -152,6 +152,7 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
 
     private void enviarRequisicaoApi(Rotas rotaUsuario) {
 
+
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 
