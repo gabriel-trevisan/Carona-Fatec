@@ -37,7 +37,7 @@
     <string name="cadastro">Cadastrar</string>
     <string name="exemplo_numero_celular">(dd)9xxxx-xxxx</string>
     <string-array name="turmas_array">
-        <item></item>
+        <item> </item>
         <item> Gestão Empresarial (EaD) </item>
         <item> Análise e Desenv. de Sistemas </item>
         <item> Comércio Exterior </item>
@@ -48,7 +48,7 @@
         <item> Nenhuma </item>
     </string-array>
     <string-array name="perfil_array">
-        <item></item>
+        <item> </item>
         <item>Oferecer carona</item>
         <item>Buscar carona</item>
     </string-array>
