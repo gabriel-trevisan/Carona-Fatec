@@ -33,8 +33,8 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
     private EditText edtNumeroCelular;
     private Spinner listaPerfil;
     private Spinner listaTurmas;
-    private String turmas = null;
-    private String perfil;
+    private String turmas = "";
+    private String perfil = "";
     ProgressDialog dialog;
 
 
@@ -90,13 +90,13 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         else if(!(senha.equals(confirmarSenha))) {
             Toast.makeText(this, "As senhas não são iguais, digite duas senhas identicas.", Toast.LENGTH_SHORT).show();
         }
-        else if(turmas == null) {
+        else if(turmas.equals("")) {
             Toast.makeText(this, "Por favor, escolha uma turma.", Toast.LENGTH_SHORT).show();
         }
         else if(numeroCelular.isEmpty()){
             Toast.makeText(this, "Por favor, insira um número de celular.", Toast.LENGTH_SHORT).show();
         }
-        else if(perfil == null){
+        else if(perfil.equals("")){
             Toast.makeText(this, "Por favor, escolha um perfil.", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -215,7 +215,7 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
             case R.id.spinner_turmas:
                 if (position == 0) {
                     // Sem turma
-                    turmas = null;
+                    turmas = "";
                 }
                 else {
                     turmas = parent.getSelectedItem().toString();
@@ -224,7 +224,7 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
             case R.id.spinner_perfil:
                 if (position == 0) {
                     //Sem perfil
-                    perfil = null;
+                    perfil = "";
                 }
                 else {
                     perfil = parent.getSelectedItem().toString();
@@ -236,14 +236,14 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
     //Nada selecionado na spinner
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        switch(parent.getId()){
+        /*switch(parent.getId()){
             case R.id.spinner_turmas:
-                Toast.makeText(this, "Por favor, selecione uma turma", Toast.LENGTH_SHORT).show();
+                parent.setSelection(0);
                 break;
             case R.id.spinner_perfil:
-                Toast.makeText(this, "Por favor, selecione um perfil", Toast.LENGTH_SHORT).show();
+                parent.setSelection(0);
                 break;
-        }
+        }*/
     }
 
 }
