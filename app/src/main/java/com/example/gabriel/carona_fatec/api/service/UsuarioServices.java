@@ -23,6 +23,9 @@ public interface UsuarioServices {
     @GET("usuario/{email}")
     Call<Boolean> selecionarUsuario (@Path("email") String email);
 
+    @POST("usuario/login")
+    Call<Boolean> validarUsuario (@Body Usuario usuario);
+
     //Objeto para requisições http
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
