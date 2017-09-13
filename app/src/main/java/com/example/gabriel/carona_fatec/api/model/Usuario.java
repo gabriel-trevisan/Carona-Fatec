@@ -23,6 +23,11 @@ public class Usuario {
         this.turma = turma;
     }
 
+    public Usuario(String email, String senha){
+        this.email = email;
+        this.senha = senha;
+    }
+
     public String getNome() {
         return nome;
     }
