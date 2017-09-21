@@ -21,7 +21,7 @@ public interface UsuarioServices {
 
     //verificar existencia de email no banco de dados
     @GET("usuario/{email}")
-    Call<Boolean> selecionarUsuario (@Path("email") String email);
+    Call<Usuario> getUsuario(@Path("email") String email);
 
     @POST("usuario/login")
     Call<Boolean> validarUsuario (@Body Usuario usuario);

@@ -14,6 +14,8 @@ public class Usuario {
     private int perfil;
     private Rotas Rotas;
 
+    public Usuario(){};
+
     public Usuario(String email, String nome, int numeroCelular, int perfil, String senha, String turma){
         this.email = email;
         this.nome = nome;
