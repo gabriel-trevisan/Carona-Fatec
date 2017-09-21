@@ -1,7 +1,9 @@
 package com.example.gabriel.carona_fatec;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         String senha = edtSenha.getText().toString();
 
         //instacia o objeto usuario
-        Usuario usuario = new Usuario(email, senha);
+        final Usuario usuario = new Usuario(email, senha);
 
         //cria progressbar
         dialog = new ProgressDialog(LoginActivity.this);
@@ -59,6 +61,13 @@ public class LoginActivity extends AppCompatActivity {
                         dialog.dismiss();
                         Toast.makeText(LoginActivity.this, "Seja bem-vindo!", Toast.LENGTH_SHORT).show();
                         Intent intentCarona = new Intent(LoginActivity.this, CaronaActivity.class);
+
+                        //Passando email do usuário para proxima tela
+                        SharedPreferences sharedPreferences = getSharedPreferences("emailUsuario", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("emailUsuario", usuario.getEmail());
+                        editor.apply();
+
                         startActivity(intentCarona);
                     } else {
                         dialog.dismiss();

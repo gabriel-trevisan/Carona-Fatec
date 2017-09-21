@@ -53,4 +53,8 @@
         <item>Buscar carona</item>
     </string-array>
 
+    <!-- Carona -->
+    <string name="buscar_carona">Buscar Carona</string>
+    <string name="oferecer_carona">Oferecer Carona</string>
+
 </resources>

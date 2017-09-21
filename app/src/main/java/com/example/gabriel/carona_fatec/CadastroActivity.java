@@ -1,6 +1,7 @@
 package com.example.gabriel.carona_fatec;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,13 +16,9 @@ import android.widget.Toast;
 import com.example.gabriel.carona_fatec.api.model.Usuario;
 import com.example.gabriel.carona_fatec.api.service.UsuarioServices;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CadastroActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -113,25 +110,25 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         dialog.show();
 
         UsuarioServices usuarioServices = UsuarioServices.retrofit.create(UsuarioServices.class);
-        Call<Boolean> call = usuarioServices.selecionarUsuario(usuario.getEmail());
+        Call<Usuario> call = usuarioServices.getUsuario(usuario.getEmail());
 
-        call.enqueue(new Callback<Boolean>() {
+        call.enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if(dialog.isShowing()) {
-                    //Se a resposta for verdadeira, existe email cadastrado
-                    if (response.body()) {
-                        dialog.dismiss();
-                        Toast.makeText(CadastroActivity.this, "Email já cadastrado no app, digite outro email.", Toast.LENGTH_SHORT).show();
-                    } else {
+                    //Se api retornar null, significa que nenhum email foi encontrado.
+                    if (response.body() == null) {
                         //Requesição de inserção
                         enviarRequisicaoPostApi(usuario);
+                    } else if (usuario.getEmail().equals(response.body().getEmail())) {
+                        dialog.dismiss();
+                        Toast.makeText(CadastroActivity.this, "Email já cadastrado no app, digite outro email.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
+            public void onFailure(Call<Usuario> call, Throwable t) {
                 if(dialog.isShowing()) {
                     dialog.dismiss();
                     Toast.makeText(CadastroActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
@@ -165,6 +162,8 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                     if (response.body()) {
                         dialog.dismiss();
                         Toast.makeText(CadastroActivity.this, "Usuário inserido com sucesso, realize o seu login!", Toast.LENGTH_SHORT).show();
+                        Intent intentLogin = new Intent(CadastroActivity.this, LoginActivity.class);
+                        startActivity(intentLogin);
                     } else {
                         dialog.dismiss();
                         Toast.makeText(CadastroActivity.this, "Erro ao inserir no banco de dados", Toast.LENGTH_SHORT).show();
