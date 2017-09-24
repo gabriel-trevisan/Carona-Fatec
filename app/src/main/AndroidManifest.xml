@@ -19,7 +19,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".OferecerCaronasActivity"
-            android:label="@string/titulo_activity_oferecer_caronas"></activity>
+            android:label="@string/titulo_activity_oferecer_caronas"
+            android:parentActivityName=".CaronaActivity">
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -32,7 +34,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ConfirmarRotaActivity" />
+        <activity
+            android:name=".ConfirmarRotaActivity"
+            android:label="Confirmar Rota"
+            android:parentActivityName="OferecerCaronasActivity"/>
         <activity
             android:name=".LoginActivity"
             android:label="@string/titulo_activity_login">

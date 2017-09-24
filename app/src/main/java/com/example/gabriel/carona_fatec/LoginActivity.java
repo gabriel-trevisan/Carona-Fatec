@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intentCarona = new Intent(LoginActivity.this, CaronaActivity.class);
 
                         //Passando email do usuário para proxima tela
-                        SharedPreferences sharedPreferences = getSharedPreferences("emailUsuario", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getSharedPreferences("usuarioLoginEmail", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("emailUsuario", usuario.getEmail());
                         editor.apply();

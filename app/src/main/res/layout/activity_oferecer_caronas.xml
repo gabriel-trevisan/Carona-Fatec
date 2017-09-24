@@ -93,10 +93,10 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
-                android:contentDescription="@string/raio" />
+                android:contentDescription="@string/distancia" />
 
             <EditText
-                android:id="@+id/edtRaio"
+                android:id="@+id/edtDistancia"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -104,7 +104,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/shape"
-                android:hint="@string/raio"
+                android:hint="@string/distancia"
                 android:inputType="number"
                 android:paddingLeft="5sp"
                 android:paddingRight="5sp"
@@ -158,9 +158,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorVerde"
-            android:text="@string/buscar_rota"
+            android:text="@string/confirmar_carona"
             android:textColor="@color/colorBranco"
-            android:onClick="buscarRota"/>
+            android:onClick="confirmarRota"/>
 
         </LinearLayout>
 

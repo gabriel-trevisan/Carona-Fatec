@@ -1,29 +1,31 @@
 package com.example.gabriel.carona_fatec;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.gabriel.carona_fatec.api.model.Rotas;
-import com.example.gabriel.carona_fatec.api.service.RotasServices;
+import com.example.gabriel.carona_fatec.api.model.Rota;
+import com.example.gabriel.carona_fatec.api.model.Usuario;
+import com.example.gabriel.carona_fatec.api.service.RotaServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.DirectionsApi;
-import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.AddressType;
 import com.google.maps.model.DirectionsResult;
-import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.TravelMode;
 
 import java.io.IOException;
@@ -35,8 +37,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -44,6 +44,7 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
 
     public String stringAtual;
     public String stringDestino;
+    ProgressDialog dialog;
 
     String rotaEncodePath;
 
@@ -88,7 +89,7 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
             //System.out.println(result.geocodedWaypoints[0].geocoderStatus);
             //System.out.println(result.geocodedWaypoints[1].geocoderStatus);
             //System.out.println(result.geocodedWaypoints[1].types[0]);
-            System.out.println(result.routes[0].overviewPolyline.decodePath());
+            //System.out.println(result.routes[0].overviewPolyline.decodePath());
             rotaEncodePath = result.routes[0].overviewPolyline.getEncodedPath();
 
 
@@ -105,11 +106,19 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
             e.printStackTrace();
         }
 
+        //Criando limite de tela
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(converterStringLatLng(stringAtual));
+        builder.include(converterStringLatLng(stringDestino));
+
+        LatLngBounds bounds = builder.build();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+
         mMap.addMarker(new MarkerOptions().position(converterStringLatLng(stringAtual)).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(converterStringLatLng(stringAtual)));
+       //mMap.moveCamera(CameraUpdateFactory.newLatLng(converterStringLatLng(stringAtual)));
 
         mMap.addMarker(new MarkerOptions().position(converterStringLatLng(stringDestino)).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(converterStringLatLng(stringDestino)));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(converterStringLatLng(stringDestino)));
 
     }
 
@@ -142,15 +151,25 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         return atualLocalizacaoLatLng;
     }
 
-    public void confirmarRota(View v){
+    public void confirmar(View v){
 
-        Rotas rotaUsuario = new Rotas(rotaEncodePath);
+        //Recebendo id do usuário por SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("infoUsuario", Context.MODE_PRIVATE);
+        int idUsuario = sharedPreferences.getInt("idUsuario", 0);
 
-        enviarRequisicaoApi(rotaUsuario);
+        //Rota rotaUsuario = new Rota(rotaEncodePath);
+
+        Usuario usuario = new Usuario();
+        usuario.setId(idUsuario);
+        usuario.setRota(rotaEncodePath);
+
+        //System.out.print(usuario.toString());
+
+        enviarRequisicaoApi(usuario);
 
     }
 
-    private void enviarRequisicaoApi(Rotas rotaUsuario) {
+    private void enviarRequisicaoApi(Usuario usuario) {
 
 
         // Testa retorno http
@@ -163,25 +182,36 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         httpClient.addInterceptor(logging);
         //End
 
-        //Objeto para requisições http
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.101:8080/Web-Service-Tamo-Junto-Carona/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
-                .build();
+        dialog = new ProgressDialog(ConfirmarRotaActivity.this);
+        dialog.setMessage("Gravando rota...");
+        dialog.setCancelable(false);
+        dialog.show();
 
-        RotasServices rota = retrofit.create(RotasServices.class);
-        Call<Rotas> call = rota.inserirRota(rotaUsuario);
+        RotaServices rota = RotaServices.retrofit.create(RotaServices.class);
+        Call<Boolean> call = rota.inserirRota(usuario);
 
-        call.enqueue(new Callback<Rotas>() {
+        call.enqueue(new Callback<Boolean>() {
             @Override
-            public void onResponse(Call<Rotas> call, Response<Rotas> response) {
-                Toast.makeText(ConfirmarRotaActivity.this, "Sucesso: " + response.body().getRota(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (dialog.isShowing()) {
+                    //Se a resposta do servidor for verdadeira (Foi inserido com sucesso)
+                    if (response.body()) {
+                        dialog.dismiss();
+                        Toast.makeText(ConfirmarRotaActivity.this, "Rota inserida com sucesso!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        dialog.dismiss();
+                        Toast.makeText(ConfirmarRotaActivity.this, "Erro ao inserir no banco de dados", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
             }
 
             @Override
-            public void onFailure(Call<Rotas> call, Throwable t) {
-                Toast.makeText(ConfirmarRotaActivity.this, "Erro", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                    Toast.makeText(ConfirmarRotaActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

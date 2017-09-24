@@ -23,6 +23,6 @@
         android:background="@color/colorVerde"
         android:text="@string/confirmar_rota"
         android:textColor="@color/colorBranco"
-        android:onClick="confirmarRota"/>
+        android:onClick="confirmar"/>
 
 </LinearLayout>
