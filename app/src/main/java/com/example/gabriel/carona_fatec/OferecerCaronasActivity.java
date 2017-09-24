@@ -1,5 +1,6 @@
 package com.example.gabriel.carona_fatec;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,7 @@ public class OferecerCaronasActivity extends AppCompatActivity {
 
     EditText localizacaoAtual;
     EditText destino;
-    EditText raio;
+    EditText distancia;
     GeocodingResult[] resultLocalizacaoAtual;
     GeocodingResult[] resultDestino;
 
@@ -29,11 +30,11 @@ public class OferecerCaronasActivity extends AppCompatActivity {
         //Instanciando objetos
         localizacaoAtual = (EditText) findViewById(R.id.edtLocalizacaoUsuario);
         destino = (EditText) findViewById(R.id.edtDestinoUsuario);
-        raio = (EditText) findViewById(R.id.edtRaio);
+        distancia = (EditText) findViewById(R.id.edtDistancia);
 
     }
 
-    public void buscarRota(View v){
+    public void confirmarRota (View v){
 
         String stringLocalizacaoAtual = localizacaoAtual.getText().toString();
         String stringDestino = destino.getText().toString();
@@ -46,27 +47,25 @@ public class OferecerCaronasActivity extends AppCompatActivity {
         resultLocalizacaoAtual = new GeocodingResult[0];
         resultDestino = new GeocodingResult[0];
 
-        try {
+            try {
 
-            resultLocalizacaoAtual = GeocodingApi.geocode(context,stringLocalizacaoAtual).await();
-            resultDestino = GeocodingApi.geocode(context,stringDestino).await();
+                resultLocalizacaoAtual = GeocodingApi.geocode(context, stringLocalizacaoAtual).await();
+                resultDestino = GeocodingApi.geocode(context, stringDestino).await();
 
-            Intent confirmarRotaActivity = new Intent(this, ConfirmarRotaActivity.class);
-            Bundle extras = new Bundle();
-            extras.putString("resultLocalizacaoAtual", String.valueOf(resultLocalizacaoAtual[0].geometry.location));
-            extras.putString("resultDestino", String.valueOf(resultDestino[0].geometry.location));
-            confirmarRotaActivity.putExtras(extras);
-            startActivity(confirmarRotaActivity);
+                Intent confirmarRotaActivity = new Intent(this, ConfirmarRotaActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("resultLocalizacaoAtual", String.valueOf(resultLocalizacaoAtual[0].geometry.location));
+                extras.putString("resultDestino", String.valueOf(resultDestino[0].geometry.location));
+                confirmarRotaActivity.putExtras(extras);
+                startActivity(confirmarRotaActivity);
 
-
-        } catch (ApiException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+            } catch (ApiException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
     }
 

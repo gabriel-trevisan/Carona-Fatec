@@ -26,13 +26,36 @@ public class CaronaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carona);
 
-        //Recebendo email do usuário da tela de login
-        SharedPreferences sharedPreferences = getSharedPreferences("emailUsuario", Context.MODE_PRIVATE);
+        //Recebendo email do usuário por SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("usuarioLoginEmail", Context.MODE_PRIVATE);
         String result = sharedPreferences.getString("emailUsuario", "");
 
         usuario = new Usuario();
         usuario.setEmail(result);
 
+        UsuarioServices usuarioServices = UsuarioServices.retrofit.create(UsuarioServices.class);
+        Call<Usuario> call = usuarioServices.getUsuario(usuario.getEmail());
+
+        call.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+
+                    usuario.setId(response.body().getId());
+                    System.out.println(usuario.getId());
+
+                    //Armazenar as informações do usuário em SharedPreferences, apenas id do usuário ainda.
+                    SharedPreferences sharedPreferences = getSharedPreferences("infoUsuario", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("idUsuario", usuario.getId());
+                    editor.apply();
+
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+
+            }
+        });
     }
 
     //Button oferecerCarona

@@ -6,13 +6,14 @@ package com.example.gabriel.carona_fatec.api.model;
 
 public class Usuario {
 
+    private int id;
     private String nome;
     private String email;
     private String senha;
     private String turma;
     private int numeroCelular;
     private int perfil;
-    private Rotas Rotas;
+    private String rota;
 
     public Usuario(){};
 
@@ -28,6 +29,14 @@ public class Usuario {
     public Usuario(String email, String senha){
         this.email = email;
         this.senha = senha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -78,17 +87,17 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    public Rotas getRotas() {
-        return Rotas;
+    public String getRota() {
+        return rota;
     }
 
-    public void setRotas(Rotas rotas) {
-        Rotas = rotas;
+    public void setRota(String rota) {
+        this.rota = rota;
     }
 
     public String toString(){
 
-        return this.nome + " " + this.email + " " + this.senha + " " + this.numeroCelular;
+        return this.id + " " + this.rota;
     }
 
 }
