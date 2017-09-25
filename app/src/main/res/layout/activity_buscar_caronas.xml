@@ -5,47 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.gabriel.carona_fatec.OferecerCaronasActivity">
+    tools:context="com.example.gabriel.carona_fatec.BuscarCaronasActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="3"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/localizacao_usuario"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:contentDescription="@string/descricao_localizacao_usuario" />
-
-            <EditText
-                android:id="@+id/edtLocalizacaoUsuario"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:height="40dp"
-                android:background="@drawable/shape"
-                android:paddingLeft="5sp"
-                android:paddingRight="5sp"
-                android:hint="@string/sua_localizacao"
-                android:textColor="@color/colorBranco"
-                android:textColorHint="@color/colorBranco"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,40 +44,6 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/raio"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:contentDescription="@string/distancia" />
-
-            <EditText
-                android:id="@+id/edtDistancia"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape"
-                android:hint="@string/distancia"
-                android:inputType="number"
-                android:paddingLeft="5sp"
-                android:paddingRight="5sp"
-                android:textColor="@color/colorBranco"
-                android:textColorHint="@color/colorBranco" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -187,30 +120,9 @@
         android:layout_weight="5"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/titulo_instrucoes_oferecer_carona"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:lineSpacingExtra="6sp"
-            android:paddingLeft="8sp"
-            android:paddingRight="5sp"
-            android:text="@string/passos_oferecer_carona"
-            android:textSize="15sp" />
+        <!-- Sem texto -->
 
     </LinearLayout>
-
-
 
 
     <LinearLayout
@@ -226,10 +138,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorVerde"
-            android:text="@string/confirmar_carona"
+            android:text="@string/procurar_carona"
             android:textColor="@color/colorBranco"
-            android:onClick="confirmarRota"/>
+            android:onClick=""/>
 
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>
+

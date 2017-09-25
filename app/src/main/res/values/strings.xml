@@ -55,4 +55,9 @@
     <string name="confirmar_carona">Confirmar</string>
     <string name="oferecer_carona">Oferecer Carona</string>
 
+    <!-- Buscar Caronas -->
+    <string name="procurar_carona">Procurar</string>
+    <string name="data">Data</string>
+    <string name="horario">Horário</string>
+
 </resources>
