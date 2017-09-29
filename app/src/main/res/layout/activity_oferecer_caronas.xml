@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="7"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
@@ -83,8 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="24dp"
@@ -138,10 +137,11 @@
                 android:paddingLeft="5sp"
                 android:paddingRight="5sp"
                 android:hint="@string/data"
-                android:inputType="date"
                 android:textColor="@color/colorBranco"
                 android:textColorHint="@color/colorBranco"
                 android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="false"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
         </LinearLayout>
@@ -162,21 +162,22 @@
                 android:contentDescription="@string/descricao_destina_usuario" />
 
             <EditText
-                android:id="@+id/edtHoraUsuario"
+                android:id="@+id/edtHorario"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:height="40dp"
                 android:background="@drawable/shape"
+                android:hint="@string/horario"
                 android:paddingLeft="5sp"
                 android:paddingRight="5sp"
-                android:hint="@string/horario"
-                android:inputType="time"
+                android:clickable="true"
+                android:focusable="false"
                 android:textColor="@color/colorBranco"
-                android:textColorHint="@color/colorBranco"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
+                android:textColorHint="@color/colorBranco" />
         </LinearLayout>
 
     </LinearLayout>
@@ -184,7 +185,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="4"
         android:orientation="vertical">
 
         <TextView
@@ -210,13 +211,10 @@
 
     </LinearLayout>
 
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:gravity="bottom"
         android:orientation="vertical">
 

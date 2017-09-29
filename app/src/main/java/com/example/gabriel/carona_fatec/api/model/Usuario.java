@@ -13,7 +13,7 @@ public class Usuario {
     private String turma;
     private int numeroCelular;
     private int perfil;
-    private String rota;
+    private Rota rota;
 
     public Usuario(){};
 
@@ -29,6 +29,11 @@ public class Usuario {
     public Usuario(String email, String senha){
         this.email = email;
         this.senha = senha;
+    }
+
+    public Usuario(int id, Rota rota){
+        this.id = id;
+        this.rota = rota;
     }
 
     public int getId() {
@@ -87,11 +92,11 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    public String getRota() {
+    public Rota getRota() {
         return rota;
     }
 
-    public void setRota(String rota) {
+    public void setRota(Rota rota) {
         this.rota = rota;
     }
 
