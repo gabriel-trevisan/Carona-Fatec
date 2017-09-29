@@ -20,9 +20,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="@string/confirmar_carona"
+        android:text="@string/procurar_carona"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
+        android:onClick="buscarCarona"
         android:background="@color/colorRoxo"
         android:textColor="@color/colorBranco"/>
 
