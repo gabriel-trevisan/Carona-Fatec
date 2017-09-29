@@ -37,6 +37,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -44,6 +46,10 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
 
     public String stringAtual;
     public String stringDestino;
+    public String stringData;
+    public String stringHorario;
+    public int intDistancia;
+
     ProgressDialog dialog;
 
     String rotaEncodePath;
@@ -65,6 +71,9 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
 
         stringAtual = extras.getString("resultLocalizacaoAtual");
         stringDestino =  extras.getString("resultDestino");
+        intDistancia = extras.getInt("distancia");
+        stringData = extras.getString("data");
+        stringHorario = extras.getString("horario");
 
     }
 
@@ -157,20 +166,20 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         SharedPreferences sharedPreferences = getSharedPreferences("infoUsuario", Context.MODE_PRIVATE);
         int idUsuario = sharedPreferences.getInt("idUsuario", 0);
 
-        //Rota rotaUsuario = new Rota(rotaEncodePath);
+        Rota rotaUsuario = new Rota();
 
-        Usuario usuario = new Usuario();
-        usuario.setId(idUsuario);
-        usuario.setRota(rotaEncodePath);
+        rotaUsuario.setRota(rotaEncodePath);
+        rotaUsuario.setData(stringData);
+        rotaUsuario.setHorario(stringHorario);
+        rotaUsuario.setDistancia(intDistancia);
 
-        //System.out.print(usuario.toString());
+        Usuario usuario = new Usuario(idUsuario, rotaUsuario);
 
         enviarRequisicaoApi(usuario);
 
     }
 
     private void enviarRequisicaoApi(Usuario usuario) {
-
 
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -187,7 +196,13 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         dialog.setCancelable(false);
         dialog.show();
 
-        RotaServices rota = RotaServices.retrofit.create(RotaServices.class);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
+                .build();
+
+        RotaServices rota = retrofit.create(RotaServices.class);
         Call<Boolean> call = rota.inserirRota(usuario);
 
         call.enqueue(new Callback<Boolean>() {

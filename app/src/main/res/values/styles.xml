@@ -14,4 +14,9 @@
         <item name="elevation">0dp</item>
     </style>
 
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorVerde</item>
+    </style>
+
+
 </resources>
