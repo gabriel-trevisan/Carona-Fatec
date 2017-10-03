@@ -71,10 +71,11 @@
                 android:paddingLeft="5sp"
                 android:paddingRight="5sp"
                 android:hint="@string/data"
-                android:inputType="date"
                 android:textColor="@color/colorBranco"
                 android:textColorHint="@color/colorBranco"
                 android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="false"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
         </LinearLayout>
@@ -95,21 +96,22 @@
                 android:contentDescription="@string/descricao_destina_usuario" />
 
             <EditText
-                android:id="@+id/edtHoraUsuario"
+                android:id="@+id/edtHorario"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:height="40dp"
                 android:background="@drawable/shape"
+                android:hint="@string/horario"
                 android:paddingLeft="5sp"
                 android:paddingRight="5sp"
-                android:hint="@string/horario"
-                android:inputType="time"
+                android:clickable="true"
+                android:focusable="false"
                 android:textColor="@color/colorBranco"
-                android:textColorHint="@color/colorBranco"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
+                android:textColorHint="@color/colorBranco" />
         </LinearLayout>
 
     </LinearLayout>
@@ -140,7 +142,7 @@
             android:background="@color/colorVerde"
             android:text="@string/procurar_carona"
             android:textColor="@color/colorBranco"
-            android:onClick=""/>
+            android:onClick="buscarCarona"/>
 
     </LinearLayout>
 

@@ -56,13 +56,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if (dialog.isShowing()) {
-                    //Se a resposta do servidor for verdadeira (Usuário existe!)
+                    //Se a resposta do servidor for verdadeira (Usuário válido!)
                     if (response.body()) {
                         dialog.dismiss();
                         Toast.makeText(LoginActivity.this, "Seja bem-vindo!", Toast.LENGTH_SHORT).show();
                         Intent intentCarona = new Intent(LoginActivity.this, CaronaActivity.class);
 
-                        //Passando email do usuário para proxima tela
+                        //SharedPreferences
                         SharedPreferences sharedPreferences = getSharedPreferences("usuarioLoginEmail", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("emailUsuario", usuario.getEmail());

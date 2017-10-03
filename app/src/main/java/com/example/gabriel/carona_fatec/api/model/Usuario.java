@@ -1,10 +1,12 @@
 package com.example.gabriel.carona_fatec.api.model;
 
+import java.io.Serializable;
+
 /**
  * Created by gabriel on 08/09/2017.
  */
 
-public class Usuario {
+public class Usuario implements Serializable{
 
     private int id;
     private String nome;
@@ -15,7 +17,15 @@ public class Usuario {
     private int perfil;
     private Rota rota;
 
-    public Usuario(){};
+    public Usuario(){}
+
+    public Usuario(String nome, String email, int numeroCelular, String turma, Rota rota){
+        this.nome = nome;
+        this.email = email;
+        this.numeroCelular = numeroCelular;
+        this.turma = turma;
+        this.rota = rota;
+    }
 
     public Usuario(String email, String nome, int numeroCelular, int perfil, String senha, String turma){
         this.email = email;
@@ -102,7 +112,13 @@ public class Usuario {
 
     public String toString(){
 
-        return this.id + " " + this.rota;
+        return  "\n" +
+                "Nome: " + this.nome + "\n" +
+                "Email: " + this.email + "\n"+
+                "Numero Celular: " + this.numeroCelular + "\n" +
+                "Turma: " + this.turma + "\n" +
+                "Horario: " + this.rota.getHorario()
+                + "\n";
     }
 
 }

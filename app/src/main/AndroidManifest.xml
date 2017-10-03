@@ -39,24 +39,28 @@
             android:parentActivityName=".OferecerCaronasActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/titulo_activity_login">
+            android:label="@string/titulo_activity_login"></activity>
+        <activity
+            android:name=".CadastroActivity"
+            android:label="Cadastro"
+            android:parentActivityName=".LoginActivity" />
+        <activity
+            android:name=".CaronaActivity"
+            android:label="Caronas" />
+        <activity
+            android:name=".BuscarCaronasActivity"
+            android:label="Buscar Caronas"
+            android:parentActivityName=".CaronaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CadastroActivity"
-            android:label="Cadastro"
-            android:parentActivityName=".LoginActivity"></activity>
-        <activity
-            android:name=".CaronaActivity"
-            android:label="Caronas"></activity>
-        <activity
-            android:name=".BuscarCaronasActivity"
-            android:label="Buscar Caronas"
+        <activity android:name=".ListarCaronaActivity"
+            android:label="Listar Caronas"
             android:parentActivityName=".CaronaActivity">
+
         </activity>
     </application>
 

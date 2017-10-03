@@ -1,10 +1,12 @@
 package com.example.gabriel.carona_fatec.api.model;
 
+import java.io.Serializable;
+
 /**
  * Created by gabriel on 27/08/2017.
  */
 
-public class Rota {
+public class Rota implements Serializable {
 
     private String rota;
     private String data;
