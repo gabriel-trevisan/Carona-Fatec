@@ -60,4 +60,11 @@
     <string name="data">Data</string>
     <string name="horario">Horário</string>
 
+    <!-- Reservar Carona -->
+    <string name="sobre_carona">Sobre a carona</string>
+    <string name="saida">Saída:</string>
+    <string name="destino">Destino:</string>
+    <string name="horas">Horas:</string>
+    <string name="reservar">Reservar</string>
+
 </resources>

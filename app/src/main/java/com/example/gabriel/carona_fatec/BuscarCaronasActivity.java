@@ -115,6 +115,11 @@ public class BuscarCaronasActivity extends AppCompatActivity {
 
     public void buscarCarona(View v) throws InterruptedException, ApiException, IOException {
 
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Procurando carona...");
+        dialog.setCancelable(false);
+        dialog.show();
+
         //Key da api de Geo
         String contextGeoApiKey = getResources().getString(R.string.api_key_geo);
 
@@ -131,11 +136,6 @@ public class BuscarCaronasActivity extends AppCompatActivity {
     }
 
     private void enviarRequisicaoGetApi(String destino, String data, String horario) {
-
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("Procurando carona...");
-        dialog.setCancelable(false);
-        dialog.show();
 
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -186,12 +186,12 @@ public class BuscarCaronasActivity extends AppCompatActivity {
 
         for(Usuario usuario: listaUsuarios) {
 
-            usuarios.add(new Usuario(usuario.getNome(), usuario.getEmail(), usuario.getNumeroCelular(), usuario.getTurma(), usuario.getRota()));
+            usuarios.add(new Usuario(usuario.getId(), usuario.getNome(), usuario.getEmail(), usuario.getNumeroCelular(), usuario.getTurma(), usuario.getRota()));
 
         }
 
         Intent intent = new Intent(this, ListarCaronaActivity.class);
-        intent.putExtra("arrayUsuarios", usuarios);
+        intent.putParcelableArrayListExtra("arrayUsuarios", usuarios);
         startActivity(intent);
 
     }

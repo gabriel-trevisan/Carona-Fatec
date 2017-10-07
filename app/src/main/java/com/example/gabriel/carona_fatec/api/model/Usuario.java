@@ -1,12 +1,14 @@
 package com.example.gabriel.carona_fatec.api.model;
 
-import java.io.Serializable;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by gabriel on 08/09/2017.
  */
 
-public class Usuario implements Serializable{
+public class Usuario implements Parcelable {
 
     private int id;
     private String nome;
@@ -19,7 +21,8 @@ public class Usuario implements Serializable{
 
     public Usuario(){}
 
-    public Usuario(String nome, String email, int numeroCelular, String turma, Rota rota){
+    public Usuario(int id, String nome, String email, int numeroCelular, String turma, Rota rota){
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.numeroCelular = numeroCelular;
@@ -119,6 +122,44 @@ public class Usuario implements Serializable{
                 "Turma: " + this.turma + "\n" +
                 "Horario: " + this.rota.getHorario()
                 + "\n";
+    }
+
+    // Parcelable para passar objetos entre activities
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nome);
+        dest.writeString(email);
+        dest.writeInt(numeroCelular);
+        dest.writeString(turma);
+        dest.writeValue(rota);
+    }
+
+    public static final Parcelable.Creator<Usuario> CREATOR = new Parcelable.Creator<Usuario>() {
+        public Usuario createFromParcel(Parcel in) {
+            return new Usuario(in);
+        }
+
+        public Usuario[] newArray(int size) {
+            return new Usuario[size];
+        }
+    };
+
+    // example constructor that takes a Parcel and gives you an object populated with it's values
+    private Usuario(Parcel in) {
+        id = in.readInt();
+        nome = in.readString();
+        email = in.readString();
+        numeroCelular = in.readInt();
+        turma = in.readString();
+        rota = (Rota) in.readValue(Rota.class.getClassLoader());
+
     }
 
 }
