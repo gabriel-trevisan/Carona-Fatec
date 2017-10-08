@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.gabriel.carona_fatec.api.model.Usuario;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

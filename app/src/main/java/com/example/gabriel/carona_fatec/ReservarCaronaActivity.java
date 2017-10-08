@@ -30,7 +30,6 @@ public class ReservarCaronaActivity extends AppCompatActivity {
     ProgressDialog dialog;
     TextView saida, destino, horario, nome, email, celular;
     Usuario usuario;
-    int PENDENTE = 2;
     int idUsuario;
 
     @Override
@@ -82,7 +81,7 @@ public class ReservarCaronaActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.show();
 
-        Reserva reserva = new Reserva(usuario.getRota().getId(), idUsuario, PENDENTE);
+        Reserva reserva = new Reserva(usuario.getRota().getId(), idUsuario, "PENDENTE");
 
         enviarRequisicaoPostApi(reserva);
 

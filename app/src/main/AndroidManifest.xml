@@ -56,14 +56,17 @@
         <activity
             android:name=".BuscarCaronasActivity"
             android:label="Buscar Caronas"
-            android:parentActivityName=".CaronaActivity">
-        </activity>
+            android:parentActivityName=".CaronaActivity"></activity>
         <activity
             android:name=".ListarCaronaActivity"
             android:label="Listar Caronas"
-            android:parentActivityName=".CaronaActivity"></activity>
-        <activity android:name=".ReservarCaronaActivity"
-            android:label="Reservar Carona">
+            android:parentActivityName=".CaronaActivity" />
+        <activity
+            android:name=".ReservarCaronaActivity"
+            android:label="Reservar Carona"></activity>
+        <activity
+            android:name=".MinhasBuscasCarona"
+            android:label="Minhas Buscas">
         </activity>
     </application>
 
