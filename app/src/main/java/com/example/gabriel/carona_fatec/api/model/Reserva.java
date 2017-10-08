@@ -9,9 +9,11 @@ public class Reserva {
     private int id;
     private int idRota;
     private int idUsuario;
-    private int status;
+    private String status;
+    private Usuario usuario;
+    private Rota rota;
 
-    public Reserva(int idRota, int idUsuario, int status){
+    public Reserva(int idRota, int idUsuario, String status){
         this.idRota = idRota;
         this.idUsuario = idUsuario;
         this.status = status;
@@ -41,12 +43,41 @@ public class Reserva {
         this.idUsuario = idUsuario;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Rota getRota() {
+        return rota;
+    }
+
+    public void setRota(Rota rota) {
+        this.rota = rota;
+    }
+
+    public String toString(){
+
+        return  "\n" +
+                "Nome: " + this.usuario.getNome() + "\n" +
+                "Email: " + this.usuario.getEmail() + "\n"+
+                "Numero Celular: " + this.usuario.getNumeroCelular() + "\n" +
+                "Turma: " + this.usuario.getTurma() + "\n" +
+                "Horario: " + this.rota.getHorario() + "\n" +
+                "Status: " + this.status
+                + "\n";
+
     }
 
 }
