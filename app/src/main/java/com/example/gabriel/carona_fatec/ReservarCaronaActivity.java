@@ -31,6 +31,7 @@ public class ReservarCaronaActivity extends AppCompatActivity {
     TextView saida, destino, horario, nome, email, celular;
     Usuario usuario;
     int idUsuario;
+    Reserva reserva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +82,57 @@ public class ReservarCaronaActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.show();
 
-        Reserva reserva = new Reserva(usuario.getRota().getId(), idUsuario, "PENDENTE");
+        reserva = new Reserva(usuario.getRota().getId(), idUsuario, "PENDENTE");
 
-        enviarRequisicaoPostApi(reserva);
+        enviarRequisicaoGetApi(reserva.getIdUsuario(), reserva.getIdRota());
+
+    }
+
+    public void enviarRequisicaoGetApi(int idUsuario, int idRota){
+
+        //Testa retorno http
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+
+        httpClient.addInterceptor(logging);
+        //End
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
+                .build();
+
+        ReservaServices reservaServices = retrofit.create(ReservaServices.class);
+        Call<Boolean> call = reservaServices.validarReserva(idUsuario, idRota);
+
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (dialog.isShowing()) {
+                    //Se a resposta do servidor for verdadeira, já existe reserva deste usuário
+                    if (response.body()) {
+                        dialog.dismiss();
+                        Toast.makeText(ReservarCaronaActivity.this, "Ops, você já realizou está reserva, acompanhe a aprovação de sua carona no menu inicial: Minhas Buscas.", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        dialog.dismiss();
+                        enviarRequisicaoPostApi(reserva);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                    Toast.makeText(ReservarCaronaActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 

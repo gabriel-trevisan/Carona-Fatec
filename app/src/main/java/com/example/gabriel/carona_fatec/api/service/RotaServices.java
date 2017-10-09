@@ -28,6 +28,9 @@ public interface RotaServices {
                                  @Query("data") String data,
                                  @Query("horario") String horario);
 
+    @GET("rota/{idUsuario}")
+    Call<List<Rota>> listarCaronasOferecidas (@Path("idUsuario") int idUsuario);
+
     //Objeto para requisições http
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")

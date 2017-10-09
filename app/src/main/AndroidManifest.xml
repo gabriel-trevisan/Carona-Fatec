@@ -56,17 +56,24 @@
         <activity
             android:name=".BuscarCaronasActivity"
             android:label="Buscar Caronas"
-            android:parentActivityName=".CaronaActivity"></activity>
+            android:parentActivityName=".CaronaActivity" />
         <activity
             android:name=".ListarCaronaActivity"
             android:label="Listar Caronas"
             android:parentActivityName=".CaronaActivity" />
         <activity
             android:name=".ReservarCaronaActivity"
-            android:label="Reservar Carona"></activity>
+            android:label="Reservar Carona" />
         <activity
             android:name=".MinhasBuscasCarona"
-            android:label="Minhas Buscas">
+            android:label="Minhas Buscas" />
+        <activity
+            android:name=".MinhasOfertasCarona"
+            android:label="Minhas Ofertas"></activity>
+        <activity
+            android:name=".ConfirmarCaronaActivity"
+            android:label="Confirmar Caronas">
+
         </activity>
     </application>
 
