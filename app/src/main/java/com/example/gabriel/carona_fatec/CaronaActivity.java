@@ -77,6 +77,12 @@ public class CaronaActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        else if(item.getItemId() == R.id.minhasOfertasCarona){
+
+            Intent intent = new Intent(this, MinhasOfertasCarona.class);
+            startActivity(intent);
+            return true;
+        }
 
         return true;
     }

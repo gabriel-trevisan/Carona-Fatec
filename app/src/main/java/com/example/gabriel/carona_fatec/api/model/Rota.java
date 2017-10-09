@@ -61,7 +61,10 @@ public class Rota implements Parcelable {
 
     public String toString(){
 
-        return this.rota + " " + this.data + " " + this.horario;
+        return  "\n" +
+                "Data: " + this.data + "\n" +
+                "Horário: " + this.horario +
+                "\n";
     }
 
     @Override

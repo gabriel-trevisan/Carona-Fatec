@@ -10,6 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -21,8 +23,18 @@ public interface ReservaServices {
     @POST("reserva")
     Call<Boolean> inserirReserva (@Body Reserva reserva);
 
-    @GET("reserva")
-    Call<List<Reserva>> buscarReserva (@Query("idUsuario") String idUsuario);
+    @GET("reserva/{idUsuario}")
+    Call<List<Reserva>> buscarReserva (@Path("idUsuario") int idUsuario);
+
+    @GET("reserva/rota/{idRota}")
+    Call<List<Reserva>> buscarReservaRota (@Path("idRota") int idRota);
+
+    @PUT("reserva")
+    Call<Boolean> alterarStatusReserva (@Body Reserva reserva);
+
+    @GET("reserva/{idUsuario}/{idRota}")
+    Call<Boolean> validarReserva (@Path("idUsuario") int idUsuario,
+                                  @Path("idRota") int idRota);
 
     //Objeto para requisições http
     public static final Retrofit retrofit = new Retrofit.Builder()

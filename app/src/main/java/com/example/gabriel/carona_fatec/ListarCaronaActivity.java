@@ -63,7 +63,6 @@ public class ListarCaronaActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putParcelableArrayList("lista", usuarios);
