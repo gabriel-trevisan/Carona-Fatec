@@ -18,12 +18,12 @@
 
     <!-- Login -->
     <string name="titulo_activity_login">Login</string>
-    <string name="email">E-mail</string>
+    <string name="email">Email</string>
     <string name="exemplo_email">aluno@fatec.sp.gov.br</string>
     <string name="senha">Senha</string>
-    <string name="logar">Logar</string>
+    <string name="entrar">Entrar</string>
     <string name="esqueci_senha">Esqueci minha senha</string>
-    <string name="novo_cadastro">Novo cadastro</string>
+    <string name="novo_cadastro">Criar novo cadastro</string>
 
     <!-- Cadastro -->
     <string name="titulo_activity_cadastro">Cadastro</string>

@@ -40,11 +40,6 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/titulo_activity_login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".CadastroActivity"
@@ -69,11 +64,19 @@
             android:label="Minhas Buscas" />
         <activity
             android:name=".MinhasOfertasCarona"
-            android:label="Minhas Ofertas"></activity>
+            android:label="Minhas Ofertas" />
         <activity
             android:name=".ConfirmarCaronaActivity"
-            android:label="Confirmar Caronas">
+            android:label="Confirmar Caronas"></activity>
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/TelaCheia"
+            android:label="Tamo Junto">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
