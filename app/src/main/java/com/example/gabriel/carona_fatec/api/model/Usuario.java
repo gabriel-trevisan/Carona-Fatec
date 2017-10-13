@@ -16,7 +16,6 @@ public class Usuario implements Parcelable {
     private String senha;
     private String turma;
     private int numeroCelular;
-    private int perfil;
     private Rota rota;
 
     public Usuario(){}
@@ -30,11 +29,10 @@ public class Usuario implements Parcelable {
         this.rota = rota;
     }
 
-    public Usuario(String email, String nome, int numeroCelular, int perfil, String senha, String turma){
+    public Usuario(String email, String nome, int numeroCelular, String senha, String turma){
         this.email = email;
         this.nome = nome;
         this.numeroCelular = numeroCelular;
-        this.perfil = perfil;
         this.senha = senha;
         this.turma = turma;
     }
@@ -95,14 +93,6 @@ public class Usuario implements Parcelable {
 
     public void setNumeroCelular(int numeroCelular) {
         this.numeroCelular = numeroCelular;
-    }
-
-    public int getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(int perfil) {
-        this.perfil = perfil;
     }
 
     public Rota getRota() {

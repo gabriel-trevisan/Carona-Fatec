@@ -28,10 +28,8 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
     private EditText edtSenha;
     private EditText edtConfirmaSenha;
     private EditText edtNumeroCelular;
-    private Spinner listaPerfil;
     private Spinner listaTurmas;
     private String turmas = "";
-    private String perfil = "";
     ProgressDialog dialog;
 
 
@@ -40,18 +38,14 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        //Lista de perfil
-        listaPerfil = (Spinner) findViewById(R.id.spinner_perfil);
-        ArrayAdapter<CharSequence> adapterPerfil = ArrayAdapter.createFromResource(this, R.array.perfil_array, android.R.layout.simple_spinner_item);
-        adapterPerfil.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         //Lista de turmas
         listaTurmas = (Spinner) findViewById(R.id.spinner_turmas);
         ArrayAdapter<CharSequence> adapterTurmas = ArrayAdapter.createFromResource(this, R.array.turmas_array, android.R.layout.simple_spinner_item);
         adapterTurmas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        listaPerfil.setAdapter(adapterPerfil);
         listaTurmas.setAdapter(adapterTurmas);
+
+        listaTurmas.setOnItemSelectedListener(this);
 
         edtNome = (EditText) findViewById(R.id.edtNome);
         edtEmail = (EditText) findViewById(R.id.edtEmail);
@@ -69,9 +63,6 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         String confirmarSenha = edtConfirmaSenha.getText().toString();
         String numeroCelular = edtNumeroCelular.getText().toString();
 
-        listaTurmas.setOnItemSelectedListener(this);
-        listaPerfil.setOnItemSelectedListener(this);
-
         if(TextUtils.isEmpty((nome))) {
             Toast.makeText(this, "Por favor, insira o seu nome.", Toast.LENGTH_SHORT).show();
         }
@@ -87,17 +78,14 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         else if(!(senha.equals(confirmarSenha))) {
             Toast.makeText(this, "As senhas não são iguais, digite duas senhas identicas.", Toast.LENGTH_SHORT).show();
         }
-        else if(turmas.equals("")) {
-            Toast.makeText(this, "Por favor, escolha uma turma.", Toast.LENGTH_SHORT).show();
-        }
         else if(numeroCelular.isEmpty()){
             Toast.makeText(this, "Por favor, insira um número de celular.", Toast.LENGTH_SHORT).show();
         }
-        else if(perfil.equals("")){
-            Toast.makeText(this, "Por favor, escolha um perfil.", Toast.LENGTH_SHORT).show();
+        else if(TextUtils.isEmpty(turmas)) {
+            Toast.makeText(this, "Por favor, escolha uma turma.", Toast.LENGTH_SHORT).show();
         }
         else{
-            Usuario usuario = new Usuario(email, nome, Integer.parseInt(numeroCelular),tranformarPerfilInt(perfil), senha, turmas);
+            Usuario usuario = new Usuario(email, nome, Integer.parseInt(numeroCelular), senha, turmas);
             enviarRequesicaoGetApi(usuario);
         }
     }
@@ -141,16 +129,6 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
 
     private void enviarRequisicaoPostApi(Usuario usuario) {
 
-        /* Testa retorno http
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-        httpClient.addInterceptor(logging);*/
-        //End
-
         UsuarioServices usuarioServices = UsuarioServices.retrofit.create(UsuarioServices.class);
         Call<Boolean> call = usuarioServices.inserirUsuario(usuario);
 
@@ -190,59 +168,22 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         }
     }
 
-    //Método de apoio nesta classe
-    //Tranforma perfil em int
-    public int tranformarPerfilInt(String perfil){
-
-        int perfilTransformado = 0;
-
-        if(perfil.equals("Oferecer carona")){
-            perfilTransformado = 1;
-        }
-        else if(perfil.equals("Buscar carona")){
-            perfilTransformado = 0;
-        }
-        return perfilTransformado;
-    }
-
     //A classe CadastroActivity realiza um contrato com a OnItemSelectedListener para suportar os métodos abaixo.
 
-    //Pega o item selecionado nas spinners
+    //Pega o item selecionado na spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch(parent.getId()){
-            case R.id.spinner_turmas:
-                if (position == 0) {
-                    // Sem turma
-                    turmas = "";
-                }
-                else {
-                    turmas = parent.getSelectedItem().toString();
-                }
-                break;
-            case R.id.spinner_perfil:
-                if (position == 0) {
-                    //Sem perfil
-                    perfil = "";
-                }
-                else {
-                    perfil = parent.getSelectedItem().toString();
-                }
-                break;
-        }
+
+        turmas = parent.getSelectedItem().toString();
+
     }
 
     //Nada selecionado na spinner
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        /*switch(parent.getId()){
-            case R.id.spinner_turmas:
-                parent.setSelection(0);
-                break;
-            case R.id.spinner_perfil:
-                parent.setSelection(0);
-                break;
-        }*/
+
+        parent.setSelection(0);
+
     }
 
 }
