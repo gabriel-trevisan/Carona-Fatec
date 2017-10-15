@@ -54,8 +54,8 @@ public class ReservarCaronaActivity extends AppCompatActivity {
         email = (TextView) findViewById(R.id.tv_email);
         celular = (TextView) findViewById(R.id.tv_celular);
 
-        //saida
-        //destino
+        saida.setText(String.valueOf(usuario.getRota().getAtual()));
+        destino.setText(String.valueOf(usuario.getRota().getDestino()));
         horario.setText(String.valueOf(usuario.getRota().getHorario()));
         nome.setText(String.valueOf(usuario.getNome()));
         email.setText(String.valueOf(usuario.getEmail()));
@@ -101,7 +101,7 @@ public class ReservarCaronaActivity extends AppCompatActivity {
         //End
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
+                .baseUrl("http://201.82.208.46:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();
@@ -116,10 +116,9 @@ public class ReservarCaronaActivity extends AppCompatActivity {
                     //Se a resposta do servidor for verdadeira, já existe reserva deste usuário
                     if (response.body()) {
                         dialog.dismiss();
-                        Toast.makeText(ReservarCaronaActivity.this, "Ops, você já realizou está reserva, acompanhe a aprovação de sua carona no menu inicial: Minhas Buscas.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ReservarCaronaActivity.this, "Ops, você já realizou está reserva, acompanhe a aprovação de sua carona no menu inicial: Caronas procuradas.", Toast.LENGTH_LONG).show();
 
                     } else {
-                        dialog.dismiss();
                         enviarRequisicaoPostApi(reserva);
                     }
                 }
@@ -149,7 +148,7 @@ public class ReservarCaronaActivity extends AppCompatActivity {
         //End
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
+                .baseUrl("http://201.82.208.46:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();
@@ -164,7 +163,9 @@ public class ReservarCaronaActivity extends AppCompatActivity {
                     //Se a resposta do servidor for verdadeira (Foi inserido com sucesso)
                     if (response.body()) {
                         dialog.dismiss();
-                        Toast.makeText(ReservarCaronaActivity.this, "Reserva realizada com sucesso, aguarde aprovação de sua carona.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ReservarCaronaActivity.this, "Reserva realizada com sucesso, aguarde aprovação de sua carona.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(ReservarCaronaActivity.this, MinhasBuscasCarona.class);
+                        startActivity(intent);
 
                     } else {
                         dialog.dismiss();
