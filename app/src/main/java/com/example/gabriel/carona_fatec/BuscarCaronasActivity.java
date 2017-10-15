@@ -113,12 +113,14 @@ public class BuscarCaronasActivity extends AppCompatActivity {
 
     }
 
-    public void buscarCarona(View v) throws InterruptedException, ApiException, IOException {
+    public void buscarCarona(View v) {
 
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("Procurando carona...");
-        dialog.setCancelable(false);
-        dialog.show();
+        try{
+
+            dialog = new ProgressDialog(this);
+            dialog.setMessage("Procurando carona...");
+            dialog.setCancelable(false);
+            dialog.show();
 
         //Key da api de Geo
         String contextGeoApiKey = getResources().getString(R.string.api_key_geo);
@@ -132,6 +134,11 @@ public class BuscarCaronasActivity extends AppCompatActivity {
         enviarRequisicaoGetApi(destinoLatLng,
                             data.getText().toString(),
                             horario.getText().toString());
+
+        } catch (Exception e){
+            dialog.dismiss();
+            Toast.makeText(this, "Destino inválido!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -148,7 +155,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
         //End
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
+                .baseUrl("http://201.82.208.46:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();

@@ -52,8 +52,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         app:srcCompat="@drawable/saida"
         android:layout_above="@+id/imageView4"
         android:layout_alignLeft="@+id/textView13"
@@ -62,8 +62,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         app:srcCompat="@drawable/destino"
         android:layout_alignBottom="@+id/textView15"
         android:layout_alignLeft="@+id/imageView3"
@@ -78,8 +78,8 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         app:srcCompat="@drawable/clock"
         android:layout_alignBottom="@+id/textView16"
         android:layout_alignLeft="@+id/imageView4"
@@ -97,20 +97,23 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:text="@string/reservar"
         android:background="@color/colorVerde"
         android:textColor="@color/colorBranco"
+        android:onClick="inserirReserva"
+        android:layout_marginBottom="21dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:onClick="inserirReserva"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" />
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_alignLeft="@+id/imageView5"
         android:layout_alignStart="@+id/imageView5"
         android:layout_below="@+id/view3"
@@ -119,8 +122,8 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_alignLeft="@+id/imageView6"
         android:layout_alignStart="@+id/imageView6"
         android:layout_below="@+id/imageView6"
@@ -129,8 +132,8 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_alignLeft="@+id/imageView7"
         android:layout_alignStart="@+id/imageView7"
         android:layout_below="@+id/imageView7"

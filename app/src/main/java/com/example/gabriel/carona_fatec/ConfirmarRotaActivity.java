@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -44,11 +45,10 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
 
     private GoogleMap mMap;
 
-    public String stringAtual;
-    public String stringDestino;
-    public String stringData;
-    public String stringHorario;
+    public String stringAtual, stringDestino, stringData, stringHorario, atual, destino;
     public int intDistancia;
+
+    DirectionsResult result;
 
     ProgressDialog dialog;
 
@@ -69,6 +69,8 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         Intent intentConfirmarRota = getIntent();
         Bundle extras = intentConfirmarRota.getExtras();
 
+        atual = extras.getString("localizacaoAtual");
+        destino = extras.getString("destino");
         stringAtual = extras.getString("resultLocalizacaoAtual");
         stringDestino =  extras.getString("resultDestino");
         intDistancia = extras.getInt("distancia");
@@ -86,12 +88,22 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         GeoApiContext context = new GeoApiContext().setApiKey(contextDirectionApiKey);
 
         try {
-            DirectionsResult result =
+            result =
                     DirectionsApi.newRequest(context)
                             .origin(stringAtual)
                             .destination(stringDestino)
                             .mode(TravelMode.DRIVING)
                             .await();
+
+        } catch (ApiException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try{
 
             //System.out.println(result.geocodedWaypoints);
             //System.out.println(result.geocodedWaypoints.length);
@@ -107,14 +119,12 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
                     .width(5)
                     .color(Color.RED));
 
-        } catch (ApiException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e){
+            Toast.makeText(this, "Impossível traçar uma rota, local atual ou destino estão incorretos.", Toast.LENGTH_LONG).show();
+            finish();
         }
 
+        try{
         //Criando limite de tela
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(converterStringLatLng(stringAtual));
@@ -128,6 +138,10 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
 
         mMap.addMarker(new MarkerOptions().position(converterStringLatLng(stringDestino)).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(converterStringLatLng(stringDestino)));
+
+        } catch (Exception e){
+
+        }
 
     }
 
@@ -168,6 +182,8 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
 
         Rota rotaUsuario = new Rota();
 
+        rotaUsuario.setAtual(atual);
+        rotaUsuario.setDestino(destino);
         rotaUsuario.setRota(rotaEncodePath);
         rotaUsuario.setData(stringData);
         rotaUsuario.setHorario(stringHorario);
@@ -197,7 +213,7 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
         dialog.show();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
+                .baseUrl("http://201.82.208.46:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();
@@ -212,7 +228,9 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
                     //Se a resposta do servidor for verdadeira (Foi inserido com sucesso)
                     if (response.body()) {
                         dialog.dismiss();
-                        Toast.makeText(ConfirmarRotaActivity.this, "Rota inserida com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ConfirmarRotaActivity.this, "Rota inserida com sucesso! Acompanhe suas caronas oferecidas no menu lateral.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(ConfirmarRotaActivity.this, MinhasOfertasCarona.class);
+                        startActivity(intent);
                     } else {
                         dialog.dismiss();
                         Toast.makeText(ConfirmarRotaActivity.this, "Erro ao inserir no banco de dados", Toast.LENGTH_SHORT).show();

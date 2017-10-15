@@ -60,7 +60,7 @@ public class ConfirmarCaronaActivity extends AppCompatActivity {
         //End
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
+                .baseUrl("http://201.82.208.46:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();
@@ -142,7 +142,7 @@ public class ConfirmarCaronaActivity extends AppCompatActivity {
         //End
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.37:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
+                .baseUrl("http://201.82.208.46:8080/Web-Service-Tamo-Junto-Carona/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();

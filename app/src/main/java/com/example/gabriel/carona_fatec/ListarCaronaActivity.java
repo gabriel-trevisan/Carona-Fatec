@@ -55,7 +55,7 @@ public class ListarCaronaActivity extends AppCompatActivity {
 
                     Usuario usuario = (Usuario) parent.getItemAtPosition(position);
                     Intent intent = new Intent(ListarCaronaActivity.this, ReservarCaronaActivity.class);
-                    intent.putExtra("infoReservaUsuario",usuario);
+                    intent.putExtra("infoReservaUsuario", usuario);
                     startActivity(intent);
 
                 }

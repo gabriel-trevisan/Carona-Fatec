@@ -61,45 +61,4 @@ public class CaronaActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(item.getItemId() == R.id.minhasBuscasCarona){
-
-            Intent intent = new Intent(this, MinhasBuscasCarona.class);
-            startActivity(intent);
-            return true;
-        }
-        else if(item.getItemId() == R.id.minhasOfertasCarona){
-
-            Intent intent = new Intent(this, MinhasOfertasCarona.class);
-            startActivity(intent);
-            return true;
-        }
-
-        return true;
-    }
-
-    
-    public void oferecerCarona(View v){
-
-        Intent intentOferecerCarona = new Intent(CaronaActivity.this, OferecerCaronasActivity.class);
-        startActivity(intentOferecerCarona);
-
-    }
-
-    public void buscarCarona (View v){
-
-        Intent intentBuscarCarona = new Intent(CaronaActivity.this, BuscarCaronasActivity.class);
-        startActivity(intentBuscarCarona);
-
-    }
-
 }

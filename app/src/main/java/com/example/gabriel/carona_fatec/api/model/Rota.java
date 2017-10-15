@@ -12,9 +12,7 @@ import java.io.Serializable;
 public class Rota implements Parcelable {
 
     private int id;
-    private String rota;
-    private String data;
-    private String horario;
+    private String rota, data, horario, atual, destino;
     private int distancia;
 
     public Rota(){}
@@ -59,9 +57,27 @@ public class Rota implements Parcelable {
         this.distancia = distancia;
     }
 
+    public String getAtual() {
+        return atual;
+    }
+
+    public void setAtual(String atual) {
+        this.atual = atual;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+
     public String toString(){
 
         return  "\n" +
+                "Saída: " + this.atual + "\n" +
+                "Destino: " + this.destino + "\n" +
                 "Data: " + this.data + "\n" +
                 "Horário: " + this.horario +
                 "\n";
@@ -79,7 +95,8 @@ public class Rota implements Parcelable {
         dest.writeString(data);
         dest.writeString(horario);
         dest.writeInt(distancia);
-
+        dest.writeString(atual);
+        dest.writeString(destino);
     }
 
     public static final Parcelable.Creator<Rota> CREATOR = new Parcelable.Creator<Rota>() {
@@ -99,6 +116,8 @@ public class Rota implements Parcelable {
         data = in.readString();
         horario = in.readString();
         distancia = in.readInt();
+        atual = in.readString();
+        destino = in.readString();
     }
 
 }

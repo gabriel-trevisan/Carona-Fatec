@@ -20,7 +20,7 @@
         <activity
             android:name=".OferecerCaronasActivity"
             android:label="@string/titulo_activity_oferecer_caronas"
-            android:parentActivityName=".CaronaActivity" />
+            android:parentActivityName=".MainActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -35,12 +35,11 @@
 
         <activity
             android:name=".ConfirmarRotaActivity"
-            android:label="Confirmar Rota"
+            android:label="Confirmar rota"
             android:parentActivityName=".OferecerCaronasActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/titulo_activity_login">
-        </activity>
+            android:label="@string/titulo_activity_login" />
         <activity
             android:name=".CadastroActivity"
             android:label="Cadastro"
@@ -50,34 +49,40 @@
             android:label="Caronas" />
         <activity
             android:name=".BuscarCaronasActivity"
-            android:label="Buscar Caronas"
-            android:parentActivityName=".CaronaActivity" />
+            android:label="Procurar caronas"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ListarCaronaActivity"
-            android:label="Listar Caronas"
-            android:parentActivityName=".CaronaActivity" />
+            android:label="Listar caronas"
+            android:parentActivityName=".BuscarCaronasActivity" />
         <activity
             android:name=".ReservarCaronaActivity"
-            android:label="Reservar Carona" />
+            android:label="Reservar carona" />
         <activity
             android:name=".MinhasBuscasCarona"
-            android:label="Minhas Buscas" />
+            android:label="Minhas caronas procuradas"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MinhasOfertasCarona"
-            android:label="Minhas Ofertas" />
+            android:label="Minhas caronas oferecidas"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ConfirmarCaronaActivity"
-            android:label="Confirmar Caronas"></activity>
+            android:label="Confirmar caronas" />
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/TelaCheia"
-            android:label="Tamo Junto">
+            android:label="Tamo Junto"
+            android:theme="@style/TelaCheia">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

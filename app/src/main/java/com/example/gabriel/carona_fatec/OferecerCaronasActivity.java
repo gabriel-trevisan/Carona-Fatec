@@ -27,13 +27,9 @@ public class OferecerCaronasActivity extends AppCompatActivity {
     EditText distancia;
     EditText data;
     EditText horario;
-    Date dataAtual;
 
     Calendar calendario;
     DatePickerDialog.OnDateSetListener date;
-
-    GeocodingResult[] resultLocalizacaoAtual;
-    GeocodingResult[] resultDestino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,33 +106,11 @@ public class OferecerCaronasActivity extends AppCompatActivity {
         //Key da api de Geo
         String contextGeoApiKey = getResources().getString(R.string.api_key_geo);
 
-        GeoApiContext context = new GeoApiContext().setApiKey(contextGeoApiKey);
+        GeoApiContext geoApiContext = new GeoApiContext().setApiKey(contextGeoApiKey);
 
-        resultLocalizacaoAtual = new GeocodingResult[0];
-        resultDestino = new GeocodingResult[0];
+        OferecerCaronasAsync rota = new OferecerCaronasAsync(geoApiContext, this);
 
-            try {
-
-                resultLocalizacaoAtual = GeocodingApi.geocode(context, stringLocalizacaoAtual).await();
-                resultDestino = GeocodingApi.geocode(context, stringDestino).await();
-
-                Intent confirmarRotaActivity = new Intent(this, ConfirmarRotaActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("resultLocalizacaoAtual", String.valueOf(resultLocalizacaoAtual[0].geometry.location));
-                extras.putString("resultDestino", String.valueOf(resultDestino[0].geometry.location));
-                extras.putInt("distancia", Integer.parseInt(distancia.getText().toString()));
-                extras.putString("data", data.getText().toString());
-                extras.putString("horario", horario.getText().toString());
-                confirmarRotaActivity.putExtras(extras);
-                startActivity(confirmarRotaActivity);
-
-            } catch (ApiException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        rota.execute(stringLocalizacaoAtual, stringDestino, distancia.getText().toString(), data.getText().toString(), horario.getText().toString());
 
     }
 

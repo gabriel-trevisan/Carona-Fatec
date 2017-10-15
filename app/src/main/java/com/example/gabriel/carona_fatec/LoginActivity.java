@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.body()) {
                         dialog.dismiss();
                         Toast.makeText(LoginActivity.this, "Seja bem-vindo!", Toast.LENGTH_SHORT).show();
-                        Intent intentCarona = new Intent(LoginActivity.this, CaronaActivity.class);
+                        Intent intentCarona = new Intent(LoginActivity.this, MainActivity.class);
 
                         //SharedPreferences
                         SharedPreferences sharedPreferences = getSharedPreferences("usuarioLoginEmail", Context.MODE_PRIVATE);
