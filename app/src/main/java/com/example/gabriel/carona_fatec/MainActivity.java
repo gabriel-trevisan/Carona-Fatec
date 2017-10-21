@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -122,6 +121,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_sobre) {
+
+            Intent intent = new Intent(this, SobreActivity.class);
+            startActivity(intent);
 
         }
 
