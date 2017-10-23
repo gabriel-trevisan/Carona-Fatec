@@ -11,9 +11,18 @@
             android:icon="@drawable/car"
             android:title="Caronas oferecidas" />
         <item
+            android:id="@+id/nav_aprovar"
+            android:icon="@drawable/aprovar"
+            android:title="Aprovar caronas" />
+        <item
             android:id="@+id/nav_sobre"
             android:icon="@drawable/sobre"
             android:title="Sobre" />
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Sair" />
+=
     </group>
 
 </menu>

@@ -7,15 +7,13 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.gabriel.carona_fatec.api.model.Reserva;
+import com.example.gabriel.carona_fatec.adapter.AdapterAprovarCarona;
 import com.example.gabriel.carona_fatec.api.model.Rota;
-import com.example.gabriel.carona_fatec.api.model.Usuario;
 import com.example.gabriel.carona_fatec.api.service.RotaServices;
 
 import java.util.List;
@@ -28,7 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MinhasOfertasCarona extends AppCompatActivity {
+public class AprovarCaronaActivity extends AppCompatActivity {
 
     ProgressDialog dialog;
     int idUsuario;
@@ -37,7 +35,7 @@ public class MinhasOfertasCarona extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_minhas_ofertas_carona);
+        setContentView(R.layout.activity_aprovar_carona);
 
         //cria dialog progressbar
         dialog = new ProgressDialog(this);
@@ -89,7 +87,7 @@ public class MinhasOfertasCarona extends AppCompatActivity {
             public void onFailure(Call<List<Rota>> call, Throwable t) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(MinhasOfertasCarona.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AprovarCaronaActivity.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -98,9 +96,22 @@ public class MinhasOfertasCarona extends AppCompatActivity {
 
     public void mostrarCaronasOferecidas(List<Rota> ofertasCarona){
 
-        ArrayAdapter<Rota> adapter = new ArrayAdapter<Rota>(this, android.R.layout.simple_list_item_1, ofertasCarona);
+        AdapterAprovarCarona adapter = new AdapterAprovarCarona(ofertasCarona, this);
         listViewCaronasOferecidas.setAdapter(adapter);
 
-    }
+        listViewCaronasOferecidas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Rota rota = (Rota) parent.getItemAtPosition(position);
+                Intent intent = new Intent(AprovarCaronaActivity.this, ConfirmarCaronaActivity.class);
+                Toast.makeText(AprovarCaronaActivity.this, "Aprove as caronas pendentes.", Toast.LENGTH_LONG).show();
+                intent.putExtra("infoRotas", rota);
+                startActivity(intent);
+
+            }
+        });
+
+    }
 }

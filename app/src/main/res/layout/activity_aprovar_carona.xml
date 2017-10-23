@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context="com.example.gabriel.carona_fatec.ConfirmarCaronaActivity">
+    android:layout_height="match_parent"
+    tools:context="com.example.gabriel.carona_fatec.AprovarCaronaActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <ListView
+        android:id="@+id/listaOfertas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rv_confirmar_carona"/>
+        android:layout_height="match_parent" />
 </LinearLayout>
