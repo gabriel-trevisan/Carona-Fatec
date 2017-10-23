@@ -127,6 +127,20 @@ public class MainActivity extends AppCompatActivity
 
         }
 
+        else if (id == R.id.nav_aprovar) {
+
+            Intent intent = new Intent(this, AprovarCaronaActivity.class);
+            startActivity(intent);
+
+        }
+
+        else if (id == R.id.nav_sair) {
+
+            finish();
+            System.exit(0);
+
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -1,6 +1,7 @@
 package com.example.gabriel.carona_fatec.api.service;
 
 import com.example.gabriel.carona_fatec.api.model.Reserva;
+import com.squareup.okhttp.ResponseBody;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -28,6 +30,9 @@ public interface ReservaServices {
 
     @GET("reserva/rota/{idRota}")
     Call<List<Reserva>> buscarReservaRota (@Path("idRota") int idRota);
+
+    @DELETE("reserva/{idRota}/{idUsuario}")
+    Call<Boolean> deletarReserva (@Path("idRota") int idRota, @Path("idUsuario") int idUsuario);
 
     @PUT("reserva")
     Call<Boolean> alterarStatusReserva (@Body Reserva reserva);

@@ -68,7 +68,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ConfirmarCaronaActivity"
-            android:label="Confirmar caronas" />
+            android:label="Aprovar caronas" />
         <activity
             android:name=".SplashScreen"
             android:label="Tamo Junto"
@@ -83,8 +83,13 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SobreActivity"
+        <activity
+            android:name=".SobreActivity"
             android:label="Sobre"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".AprovarCaronaActivity"
+            android:label="Aprovar caronas"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>
