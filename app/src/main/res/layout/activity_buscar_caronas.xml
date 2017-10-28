@@ -10,9 +10,45 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="5"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/localizacao_usuario"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="@string/descricao_localizacao_usuario" />
+
+            <EditText
+                android:id="@+id/edtLocalizacaoUsuario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:height="40dp"
+                android:background="@drawable/shape"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:hint="@string/sua_localizacao"
+                android:textColor="@color/colorBranco"
+                android:textColorHint="@color/colorBranco"
+                android:inputType="textPersonName"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
