@@ -24,9 +24,10 @@ public interface RotaServices {
     Call<Boolean> inserirRota (@Body Usuario rota);
 
     @GET("rota")
-    Call<List<Usuario>> buscarRota (@Query("destino") String destino,
-                                 @Query("data") String data,
-                                 @Query("horario") String horario);
+    Call<List<Usuario>> buscarRota (@Query("atual") String atual,
+                                    @Query("destino") String destino,
+                                    @Query("data") String data,
+                                    @Query("horario") String horario);
 
     @GET("rota/{idUsuario}")
     Call<List<Rota>> listarCaronasOferecidas (@Path("idUsuario") int idUsuario);

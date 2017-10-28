@@ -79,7 +79,8 @@ public class Rota implements Parcelable {
                 "Saída: " + this.atual + "\n" +
                 "Destino: " + this.destino + "\n" +
                 "Data: " + this.data + "\n" +
-                "Horário: " + this.horario;
+                "Horário: " + this.horario +
+                "\n";
     }
 
     @Override

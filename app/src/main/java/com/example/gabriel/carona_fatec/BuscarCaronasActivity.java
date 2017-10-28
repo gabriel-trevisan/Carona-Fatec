@@ -38,10 +38,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BuscarCaronasActivity extends AppCompatActivity {
 
-    EditText destino;
-    EditText data;
-    EditText horario;
-    GeocodingResult[] resultDestino;
+    EditText atual, destino, data, horario;
+    GeocodingResult[] resultDestino, resultAtual;
     ProgressDialog dialog;
 
     Calendar calendario;
@@ -52,6 +50,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_caronas);
 
+        atual = (EditText) findViewById(R.id.edtLocalizacaoUsuario);
         destino = (EditText) findViewById(R.id.edtDestinoUsuario);
         data = (EditText) findViewById(R.id.edtDataUsuario);
         horario = (EditText) findViewById(R.id.edtHorario);
@@ -59,6 +58,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
         calendario = Calendar.getInstance();
 
         resultDestino = new GeocodingResult[0];
+        resultAtual = new GeocodingResult[0];
 
         //Dialog data
         date = new DatePickerDialog.OnDateSetListener() {
@@ -123,17 +123,21 @@ public class BuscarCaronasActivity extends AppCompatActivity {
             dialog.show();
 
         //Key da api de Geo
-        String contextGeoApiKey = getResources().getString(R.string.api_key_geo);
+            String contextGeoApiKey = getResources().getString(R.string.api_key_geo);
 
-        GeoApiContext context = new GeoApiContext().setApiKey(contextGeoApiKey);
+            GeoApiContext context = new GeoApiContext().setApiKey(contextGeoApiKey);
 
-        resultDestino = GeocodingApi.geocode(context, destino.getText().toString()).await();
+            resultDestino = GeocodingApi.geocode(context, destino.getText().toString()).await();
 
-        String destinoLatLng = String.valueOf(resultDestino[0].geometry.location);
+            resultAtual = GeocodingApi.geocode(context, atual.getText().toString()).await();
 
-        enviarRequisicaoGetApi(destinoLatLng,
-                            data.getText().toString(),
-                            horario.getText().toString());
+
+            String destinoLatLng = String.valueOf(resultDestino[0].geometry.location);
+            String atualLatLng =  String.valueOf(resultAtual[0].geometry.location);
+
+            enviarRequisicaoGetApi(atualLatLng, destinoLatLng,
+                                data.getText().toString(),
+                                horario.getText().toString());
 
         } catch (Exception e){
             dialog.dismiss();
@@ -142,7 +146,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
 
     }
 
-    private void enviarRequisicaoGetApi(String destino, String data, String horario) {
+    private void enviarRequisicaoGetApi(String atual, String destino, String data, String horario) {
 
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -161,7 +165,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
                 .build();
 
         RotaServices rota = retrofit.create(RotaServices.class);
-        Call<List<Usuario>> call = rota.buscarRota(destino, data, horario);
+        Call<List<Usuario>> call = rota.buscarRota(atual, destino, data, horario);
 
         call.enqueue(new Callback<List<Usuario>>() {
             @Override
