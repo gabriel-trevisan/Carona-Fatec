@@ -9,7 +9,7 @@
     <string name="descricao_localizacao_usuario">Icone localização do usuário</string>
     <string name="descricao_destina_usuario">Icone destino do usuário</string>
     <string name="titulo_instrucoes_oferecer_carona">Instruções</string>
-    <string name="passos_oferecer_carona">O campo: Distância, significa: A quilometragem que você está disposto a sair de sua rota. O mínimo permitido é 1 km.</string>
+    <string name="passos_oferecer_carona">O campo Distância (km), significa: A quilometragem que você está disposto a sair de sua rota para oferecer uma carona."\n"O mínimo permitido é 1 km.</string>
 
     <!-- Confirmar Rota -->
     <string name="titulo_confirmar_caronas_activity">Confirmar Carona</string>
