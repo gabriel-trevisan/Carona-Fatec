@@ -69,6 +69,7 @@ public class OferecerCaronasActivity extends AppCompatActivity {
                     new DatePickerDialog(OferecerCaronasActivity.this, R.style.DialogTheme, date, calendario
                             .get(Calendar.YEAR), calendario.get(Calendar.MONTH),
                             calendario.get(Calendar.DAY_OF_MONTH)).show();
+
             }
         });
 
