@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -131,6 +132,15 @@ public class MainActivity extends AppCompatActivity
 
             Intent intent = new Intent(this, AprovarCaronaActivity.class);
             startActivity(intent);
+
+        }
+
+        else if (id == R.id.nav_avalie) {
+
+            String forms = "https://goo.gl/forms/QnOx0wLfxYGK1kau2";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(forms));
+            startActivity(i);
 
         }
 
