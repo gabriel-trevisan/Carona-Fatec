@@ -18,6 +18,12 @@
             android:id="@+id/nav_sobre"
             android:icon="@drawable/sobre"
             android:title="Sobre" />
+
+        <item
+            android:id="@+id/nav_avalie"
+            android:icon="@drawable/ic_description_black_24dp"
+            android:title="Avalie" />
+
         <item
             android:id="@+id/nav_sair"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
