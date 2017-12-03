@@ -3,13 +3,13 @@
     <!-- Oferecer carona -->
     <string name="titulo_activity_oferecer_caronas">Oferecer Caronas</string>
     <string name="buscar_rota">Buscar rota</string>
-    <string name="seu_destino">Seu destino</string>
-    <string name="sua_localizacao">Sua localização atual</string>
+    <string name="seu_destino">Digite seu destino</string>
+    <string name="sua_localizacao">Digite sua localização atual</string>
     <string name="distancia">Distância (km)</string>
     <string name="descricao_localizacao_usuario">Icone localização do usuário</string>
     <string name="descricao_destina_usuario">Icone destino do usuário</string>
     <string name="titulo_instrucoes_oferecer_carona">Instruções</string>
-    <string name="passos_oferecer_carona">O campo Distância (km), significa: A quilometragem que você está disposto a sair de sua rota para oferecer uma carona."\n"O mínimo permitido é 1 km.</string>
+    <string name="passos_oferecer_carona">O campo DISTÂNCIA significa a quilometragem que você está disposto a sair de sua rota para oferecer uma carona."\n"O mínimo permitido é 1 km.</string>
 
     <!-- Confirmar Rota -->
     <string name="titulo_confirmar_caronas_activity">Confirmar Carona</string>
@@ -19,7 +19,7 @@
     <!-- Login -->
     <string name="titulo_activity_login">Login</string>
     <string name="email">Email</string>
-    <string name="exemplo_email">aluno@fatec.sp.gov.br</string>
+    <!--<string name="exemplo_email">aluno@fatec.sp.gov.br</string>-->
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
     <string name="esqueci_senha">Esqueci minha senha</string>
@@ -33,7 +33,7 @@
     <string name="numero_celulas">Número Celular</string>
     <string name="perfil">Perfil</string>
     <string name="cadastro">Cadastrar</string>
-    <string name="exemplo_numero_celular">(dd)9xxxx-xxxx</string>
+    <!--<string name="exemplo_numero_celular">(dd)9xxxx-xxxx</string>-->
     <string-array name="turmas_array">
         <item> </item>
         <item> Gestão Empresarial (EaD) </item>

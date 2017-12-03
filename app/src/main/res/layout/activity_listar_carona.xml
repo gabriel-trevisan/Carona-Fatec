@@ -6,9 +6,25 @@
     android:layout_height="match_parent"
     tools:context="com.example.gabriel.carona_fatec.ListarCaronaActivity">
 
-    <ListView
-        android:id="@+id/listaUsuarios"
+    <RelativeLayout
+        android:id="@+id/ll_carona_encontrada"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listaUsuarios"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/txt_nenhuma_carona"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ops, nenhuma carona encontrada para seu destino :("
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

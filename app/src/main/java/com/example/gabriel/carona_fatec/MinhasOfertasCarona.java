@@ -11,6 +11,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabriel.carona_fatec.api.model.Reserva;
@@ -33,6 +34,7 @@ public class MinhasOfertasCarona extends AppCompatActivity {
     ProgressDialog dialog;
     int idUsuario;
     ListView listViewCaronasOferecidas;
+    TextView nenhumaCarona;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class MinhasOfertasCarona extends AppCompatActivity {
         idUsuario = sharedPreferences.getInt("idUsuario", 0);
 
         listViewCaronasOferecidas = (ListView) findViewById(R.id.listaOfertas);
+
+        nenhumaCarona = (TextView) findViewById(R.id.txt_nenhuma_carona);
 
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -89,7 +93,7 @@ public class MinhasOfertasCarona extends AppCompatActivity {
             public void onFailure(Call<List<Rota>> call, Throwable t) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(MinhasOfertasCarona.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MinhasOfertasCarona.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -98,8 +102,17 @@ public class MinhasOfertasCarona extends AppCompatActivity {
 
     public void mostrarCaronasOferecidas(List<Rota> ofertasCarona){
 
-        ArrayAdapter<Rota> adapter = new ArrayAdapter<Rota>(this, android.R.layout.simple_list_item_1, ofertasCarona);
-        listViewCaronasOferecidas.setAdapter(adapter);
+        if (ofertasCarona.isEmpty()) {
+
+            listViewCaronasOferecidas.setVisibility(View.INVISIBLE);
+            nenhumaCarona.setVisibility(View.VISIBLE);
+
+        } else {
+
+            ArrayAdapter<Rota> adapter = new ArrayAdapter<Rota>(this, android.R.layout.simple_list_item_1, ofertasCarona);
+            listViewCaronasOferecidas.setAdapter(adapter);
+
+        }
 
     }
 

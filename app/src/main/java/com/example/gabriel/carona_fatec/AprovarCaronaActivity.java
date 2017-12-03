@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabriel.carona_fatec.adapter.AdapterAprovarCarona;
@@ -31,6 +33,7 @@ public class AprovarCaronaActivity extends AppCompatActivity {
     ProgressDialog dialog;
     int idUsuario;
     ListView listViewCaronasOferecidas;
+    TextView nenhumUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class AprovarCaronaActivity extends AppCompatActivity {
         idUsuario = sharedPreferences.getInt("idUsuario", 0);
 
         listViewCaronasOferecidas = (ListView) findViewById(R.id.listaOfertas);
+        nenhumUsuario = (TextView) findViewById(R.id.txt_nenhum_usuario);
 
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -87,7 +91,7 @@ public class AprovarCaronaActivity extends AppCompatActivity {
             public void onFailure(Call<List<Rota>> call, Throwable t) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(AprovarCaronaActivity.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AprovarCaronaActivity.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -96,22 +100,33 @@ public class AprovarCaronaActivity extends AppCompatActivity {
 
     public void mostrarCaronasOferecidas(List<Rota> ofertasCarona){
 
-        AdapterAprovarCarona adapter = new AdapterAprovarCarona(ofertasCarona, this);
-        listViewCaronasOferecidas.setAdapter(adapter);
+        if (ofertasCarona.isEmpty()) {
 
-        listViewCaronasOferecidas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listViewCaronasOferecidas.setVisibility(View.INVISIBLE);
+            nenhumUsuario.setVisibility(View.VISIBLE);
 
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+        } else {
 
-                Rota rota = (Rota) parent.getItemAtPosition(position);
-                Intent intent = new Intent(AprovarCaronaActivity.this, ConfirmarCaronaActivity.class);
-                Toast.makeText(AprovarCaronaActivity.this, "Aprove as caronas pendentes.", Toast.LENGTH_LONG).show();
-                intent.putExtra("infoRotas", rota);
-                startActivity(intent);
+            AdapterAprovarCarona adapter = new AdapterAprovarCarona(ofertasCarona, this);
+            listViewCaronasOferecidas.setAdapter(adapter);
 
-            }
-        });
+            listViewCaronasOferecidas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+
+                    Rota rota = (Rota) parent.getItemAtPosition(position);
+                    Intent intent = new Intent(AprovarCaronaActivity.this, ConfirmarCaronaActivity.class);
+                    Toast toast = Toast.makeText(AprovarCaronaActivity.this, "Aprove os usários pendentes.", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    intent.putExtra("infoRotas", rota);
+                    startActivity(intent);
+
+                }
+            });
+
+        }
 
     }
 }

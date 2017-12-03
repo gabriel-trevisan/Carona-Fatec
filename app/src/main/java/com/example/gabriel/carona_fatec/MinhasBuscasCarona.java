@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabriel.carona_fatec.api.model.Reserva;
@@ -25,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MinhasBuscasCarona extends AppCompatActivity {
 
     ListView listViewReservas;
+    TextView nenhumaReserva;
     ProgressDialog dialog;
     int idUsuario;
 
@@ -44,6 +47,8 @@ public class MinhasBuscasCarona extends AppCompatActivity {
         idUsuario = sharedPreferences.getInt("idUsuario", 0);
 
         listViewReservas = (ListView) findViewById(R.id.listaReservas);
+
+        nenhumaReserva = (TextView) findViewById(R.id.txt_nenhuma_reserva);
 
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -83,7 +88,7 @@ public class MinhasBuscasCarona extends AppCompatActivity {
             public void onFailure(Call<List<Reserva>> call, Throwable t) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(MinhasBuscasCarona.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MinhasBuscasCarona.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -92,8 +97,17 @@ public class MinhasBuscasCarona extends AppCompatActivity {
 
     public void mostrarReservas(List<Reserva> listaReservas){
 
-        ArrayAdapter<Reserva> adapter = new ArrayAdapter<Reserva>(this, android.R.layout.simple_list_item_1, listaReservas);
-        listViewReservas.setAdapter(adapter);
+        if (listaReservas.isEmpty()) {
+
+            listViewReservas.setVisibility(View.INVISIBLE);
+            nenhumaReserva.setVisibility(View.VISIBLE);
+
+        } else {
+
+            ArrayAdapter<Reserva> adapter = new ArrayAdapter<Reserva>(this, android.R.layout.simple_list_item_1, listaReservas);
+            listViewReservas.setAdapter(adapter);
+
+        }
 
     }
 

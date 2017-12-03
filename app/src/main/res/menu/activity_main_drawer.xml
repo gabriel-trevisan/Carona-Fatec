@@ -2,18 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
+
+        <!--<item
             android:id="@+id/nav_caronas_procuradas"
             android:icon="@drawable/search"
-            android:title="Caronas procuradas" />
+            android:title="Caronas procuradas" />-->
         <item
             android:id="@+id/nav_caronas_oferecidas"
             android:icon="@drawable/car"
             android:title="Caronas oferecidas" />
-        <item
+        <!--<item
             android:id="@+id/nav_aprovar"
             android:icon="@drawable/aprovar"
-            android:title="Aprovar caronas" />
+            android:title="Aprovar caronas" />-->
         <item
             android:id="@+id/nav_sobre"
             android:icon="@drawable/sobre"

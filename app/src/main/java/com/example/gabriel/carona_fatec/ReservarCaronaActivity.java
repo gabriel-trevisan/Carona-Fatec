@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -116,7 +117,7 @@ public class ReservarCaronaActivity extends AppCompatActivity {
                     //Se a resposta do servidor for verdadeira, já existe reserva deste usuário
                     if (response.body()) {
                         dialog.dismiss();
-                        Toast.makeText(ReservarCaronaActivity.this, "Ops, você já realizou está reserva, acompanhe a aprovação de sua carona no menu inicial: Caronas procuradas.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ReservarCaronaActivity.this, "Ops, você já realizou está reserva, acompanhe a aprovação de sua carona: 'Minhas reservas'.", Toast.LENGTH_LONG).show();
 
                     } else {
                         enviarRequisicaoPostApi(reserva);
@@ -163,8 +164,10 @@ public class ReservarCaronaActivity extends AppCompatActivity {
                     //Se a resposta do servidor for verdadeira (Foi inserido com sucesso)
                     if (response.body()) {
                         dialog.dismiss();
-                        Toast.makeText(ReservarCaronaActivity.this, "Reserva realizada com sucesso, aguarde aprovação de sua carona.", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(ReservarCaronaActivity.this, MinhasBuscasCarona.class);
+                        Toast toast = Toast.makeText(ReservarCaronaActivity.this, "Reserva realizada com sucesso, aguarde aprovação de sua carona.", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                        Intent intent = new Intent(ReservarCaronaActivity.this, MainActivity.class);
                         startActivity(intent);
 
                     } else {

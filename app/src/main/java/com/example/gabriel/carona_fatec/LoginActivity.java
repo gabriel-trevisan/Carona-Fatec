@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     //Se a resposta do servidor for verdadeira (Usuário válido!)
                     if (response.body()) {
                         dialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "Seja bem-vindo!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Seja bem-vindo!", Toast.LENGTH_LONG).show();
                         Intent intentCarona = new Intent(LoginActivity.this, MainActivity.class);
 
                         //SharedPreferences
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intentCarona);
                     } else {
                         dialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "Usuário inválido ou senha incorreta.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Usuário inválido ou senha incorreta.", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<Boolean> call, Throwable t) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });

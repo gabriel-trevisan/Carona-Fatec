@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabriel.carona_fatec.adapter.AdapterConfirmarCarona;
@@ -34,6 +36,7 @@ public class ConfirmarCaronaActivity extends AppCompatActivity {
     ProgressDialog dialog;
     RecyclerView rv;
     Intent intentConfirmarCarona;
+    TextView nenhumUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class ConfirmarCaronaActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
+        nenhumUsuario = (TextView) findViewById(R.id.txt_nenhum_usuario);
 
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -99,7 +103,7 @@ public class ConfirmarCaronaActivity extends AppCompatActivity {
             public void onFailure(Call<List<Reserva>> call, Throwable t) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(ConfirmarCaronaActivity.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConfirmarCaronaActivity.this, "Erro ao conectar no servidor, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -108,8 +112,17 @@ public class ConfirmarCaronaActivity extends AppCompatActivity {
 
     public void mostrarReservasRota(List<Reserva> listaReservas){
 
-        AdapterConfirmarCarona adapter = new AdapterConfirmarCarona(listaReservas);
-        rv.setAdapter(adapter);
+        if (listaReservas.isEmpty()) {
+            //Toast.makeText(this, "Ops, nenhuma carona encontrada para seu destino :(", Toast.LENGTH_LONG).show();
+            rv.setVisibility(View.INVISIBLE);
+            nenhumUsuario.setVisibility(View.VISIBLE);
+
+        } else {
+
+            AdapterConfirmarCarona adapter = new AdapterConfirmarCarona(listaReservas);
+            rv.setAdapter(adapter);
+
+        }
 
     }
 

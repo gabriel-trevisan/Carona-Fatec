@@ -64,28 +64,28 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
         String numeroCelular = edtNumeroCelular.getText().toString();
 
         if(TextUtils.isEmpty((nome))) {
-            Toast.makeText(this, "Por favor, insira o seu nome.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, insira o seu nome.", Toast.LENGTH_LONG).show();
         }
         else if(!validarEmail(email)) {
-            Toast.makeText(this, "Por favor, insira um email válido.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, insira um email válido.", Toast.LENGTH_LONG).show();
         }
         else if(TextUtils.isEmpty(senha)) {
-            Toast.makeText(this, "Por favor, insira uma senha.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, insira uma senha.", Toast.LENGTH_LONG).show();
         }
         else if(TextUtils.isEmpty(confirmarSenha)) {
-            Toast.makeText(this, "Por favor, confirme sua senha.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, confirme sua senha.", Toast.LENGTH_LONG).show();
         }
         else if(!(senha.equals(confirmarSenha))) {
-            Toast.makeText(this, "As senhas não são iguais, digite duas senhas identicas.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "As senhas não são iguais, digite duas senhas identicas.", Toast.LENGTH_LONG).show();
         }
         else if(numeroCelular.isEmpty()){
-            Toast.makeText(this, "Por favor, insira um número de celular.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, insira um número de celular.", Toast.LENGTH_LONG).show();
         }
         else if(TextUtils.isEmpty(turmas)) {
-            Toast.makeText(this, "Por favor, escolha uma turma.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, escolha uma turma.", Toast.LENGTH_LONG).show();
         }
         else{
-            Usuario usuario = new Usuario(email, nome, Integer.parseInt(numeroCelular), senha, turmas);
+            Usuario usuario = new Usuario(email, nome, numeroCelular, senha, turmas);
             enviarRequesicaoGetApi(usuario);
         }
     }
@@ -110,7 +110,7 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                         enviarRequisicaoPostApi(usuario);
                     } else if (usuario.getEmail().equals(response.body().getEmail())) {
                         dialog.dismiss();
-                        Toast.makeText(CadastroActivity.this, "Email já cadastrado no app, digite outro email.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CadastroActivity.this, "Email já cadastrado no app, digite outro email.", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -119,7 +119,7 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
             public void onFailure(Call<Usuario> call, Throwable t) {
                 if(dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(CadastroActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CadastroActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -139,12 +139,12 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
                         //Se a resposta do servidor for verdadeira (Foi inserido com sucesso)
                     if (response.body()) {
                         dialog.dismiss();
-                        Toast.makeText(CadastroActivity.this, "Usuário inserido com sucesso, realize o seu login!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CadastroActivity.this, "Usuário inserido com sucesso, realize o seu login!", Toast.LENGTH_LONG).show();
                         Intent intentLogin = new Intent(CadastroActivity.this, LoginActivity.class);
                         startActivity(intentLogin);
                     } else {
                         dialog.dismiss();
-                        Toast.makeText(CadastroActivity.this, "Erro ao inserir no banco de dados", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CadastroActivity.this, "Erro ao inserir no banco de dados", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -153,7 +153,7 @@ public class CadastroActivity extends AppCompatActivity implements AdapterView.O
             public void onFailure(Call<Boolean> call, Throwable t) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(CadastroActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CadastroActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -15,12 +15,12 @@ public class Usuario implements Parcelable {
     private String email;
     private String senha;
     private String turma;
-    private int numeroCelular;
+    private String numeroCelular;
     private Rota rota;
 
     public Usuario(){}
 
-    public Usuario(int id, String nome, String email, int numeroCelular, String turma, Rota rota){
+    public Usuario(int id, String nome, String email, String numeroCelular, String turma, Rota rota){
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -29,7 +29,7 @@ public class Usuario implements Parcelable {
         this.rota = rota;
     }
 
-    public Usuario(String email, String nome, int numeroCelular, String senha, String turma){
+    public Usuario(String email, String nome, String numeroCelular, String senha, String turma){
         this.email = email;
         this.nome = nome;
         this.numeroCelular = numeroCelular;
@@ -87,11 +87,11 @@ public class Usuario implements Parcelable {
         this.turma = turma;
     }
 
-    public int getNumeroCelular() {
+    public String getNumeroCelular() {
         return numeroCelular;
     }
 
-    public void setNumeroCelular(int numeroCelular) {
+    public void setNumeroCelular(String numeroCelular) {
         this.numeroCelular = numeroCelular;
     }
 
@@ -126,7 +126,7 @@ public class Usuario implements Parcelable {
         dest.writeInt(id);
         dest.writeString(nome);
         dest.writeString(email);
-        dest.writeInt(numeroCelular);
+        dest.writeString(numeroCelular);
         dest.writeString(turma);
         dest.writeValue(rota);
     }
@@ -146,7 +146,7 @@ public class Usuario implements Parcelable {
         id = in.readInt();
         nome = in.readString();
         email = in.readString();
-        numeroCelular = in.readInt();
+        numeroCelular = in.readString();
         turma = in.readString();
         rota = (Rota) in.readValue(Rota.class.getClassLoader());
 

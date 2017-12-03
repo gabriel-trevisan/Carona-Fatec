@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -228,12 +229,14 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
                     //Se a resposta do servidor for verdadeira (Foi inserido com sucesso)
                     if (response.body()) {
                         dialog.dismiss();
-                        Toast.makeText(ConfirmarRotaActivity.this, "Rota inserida com sucesso! Acompanhe suas caronas oferecidas no menu lateral.", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(ConfirmarRotaActivity.this, MinhasOfertasCarona.class);
+                        Toast toast = Toast.makeText(ConfirmarRotaActivity.this, "Rota inserida com sucesso! Aprove os usuário na funcionalidade: 'Aprovar Caronas'.", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                        Intent intent = new Intent(ConfirmarRotaActivity.this, MainActivity.class);
                         startActivity(intent);
                     } else {
                         dialog.dismiss();
-                        Toast.makeText(ConfirmarRotaActivity.this, "Erro ao inserir no banco de dados", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ConfirmarRotaActivity.this, "Erro ao inserir no banco de dados", Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -243,7 +246,7 @@ public class ConfirmarRotaActivity extends AppCompatActivity implements OnMapRea
             public void onFailure(Call<Boolean> call, Throwable t) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
-                    Toast.makeText(ConfirmarRotaActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConfirmarRotaActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });

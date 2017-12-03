@@ -24,7 +24,7 @@ public class OferecerCaronasActivity extends AppCompatActivity {
 
     EditText localizacaoAtual;
     EditText destino;
-    EditText distancia;
+    //EditText distancia;
     EditText data;
     EditText horario;
 
@@ -38,7 +38,7 @@ public class OferecerCaronasActivity extends AppCompatActivity {
 
         localizacaoAtual = (EditText) findViewById(R.id.edtLocalizacaoUsuario);
         destino = (EditText) findViewById(R.id.edtDestinoUsuario);
-        distancia = (EditText) findViewById(R.id.edtDistancia);
+        //distancia = (EditText) findViewById(R.id.edtDistancia);
         data = (EditText) findViewById(R.id.edtDataUsuario);
         horario = (EditText) findViewById(R.id.edtHorario);
 
@@ -111,7 +111,7 @@ public class OferecerCaronasActivity extends AppCompatActivity {
 
         OferecerCaronasAsync rota = new OferecerCaronasAsync(geoApiContext, this);
 
-        rota.execute(stringLocalizacaoAtual, stringDestino, distancia.getText().toString(), data.getText().toString(), horario.getText().toString());
+        rota.execute(stringLocalizacaoAtual, stringDestino, "2", data.getText().toString(), horario.getText().toString());
 
     }
 

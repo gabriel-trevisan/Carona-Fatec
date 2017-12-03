@@ -111,12 +111,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_caronas_procuradas) {
+        /*if (id == R.id.nav_caronas_procuradas) {
 
             Intent intent = new Intent(this, MinhasBuscasCarona.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_caronas_oferecidas) {
+        }*/ if (id == R.id.nav_caronas_oferecidas) {
 
             Intent intent = new Intent(this, MinhasOfertasCarona.class);
             startActivity(intent);
@@ -128,12 +128,12 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        else if (id == R.id.nav_aprovar) {
+        /*else if (id == R.id.nav_aprovar) {
 
             Intent intent = new Intent(this, AprovarCaronaActivity.class);
             startActivity(intent);
 
-        }
+        }*/
 
         else if (id == R.id.nav_avalie) {
 
@@ -167,6 +167,20 @@ public class MainActivity extends AppCompatActivity
 
         Intent intentBuscarCarona = new Intent(this, BuscarCaronasActivity.class);
         startActivity(intentBuscarCarona);
+
+    }
+
+    public void aprovarCarona(View v){
+
+        Intent intentAprovarCarona = new Intent(this, AprovarCaronaActivity.class);
+        startActivity(intentAprovarCarona);
+
+    }
+
+    public void minhasReservas (View v){
+
+        Intent intentMinhasReservas = new Intent(this, MinhasBuscasCarona.class);
+        startActivity(intentMinhasReservas);
 
     }
 

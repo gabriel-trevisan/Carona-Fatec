@@ -26,8 +26,7 @@ public interface RotaServices {
     @GET("rota")
     Call<List<Usuario>> buscarRota (@Query("atual") String atual,
                                     @Query("destino") String destino,
-                                    @Query("data") String data,
-                                    @Query("horario") String horario);
+                                    @Query("data") String data);
 
     @GET("rota/{idUsuario}")
     Call<List<Rota>> listarCaronasOferecidas (@Path("idUsuario") int idUsuario);

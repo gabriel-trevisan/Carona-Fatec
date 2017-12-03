@@ -38,7 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BuscarCaronasActivity extends AppCompatActivity {
 
-    EditText atual, destino, data, horario;
+    EditText atual, destino, data;
     GeocodingResult[] resultDestino, resultAtual;
     ProgressDialog dialog;
 
@@ -53,7 +53,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
         atual = (EditText) findViewById(R.id.edtLocalizacaoUsuario);
         destino = (EditText) findViewById(R.id.edtDestinoUsuario);
         data = (EditText) findViewById(R.id.edtDataUsuario);
-        horario = (EditText) findViewById(R.id.edtHorario);
+        //horario = (EditText) findViewById(R.id.edtHorario);
 
         calendario = Calendar.getInstance();
 
@@ -89,7 +89,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
         });
 
         //Listener em edtHora
-        horario.setOnClickListener(new View.OnClickListener() {
+        /*horario.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -109,7 +109,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
 
                 relogioPicker.show();
             }
-        });
+        });*/
 
     }
 
@@ -136,17 +136,16 @@ public class BuscarCaronasActivity extends AppCompatActivity {
             String atualLatLng =  String.valueOf(resultAtual[0].geometry.location);
 
             enviarRequisicaoGetApi(atualLatLng, destinoLatLng,
-                                data.getText().toString(),
-                                horario.getText().toString());
+                                data.getText().toString());
 
         } catch (Exception e){
             dialog.dismiss();
-            Toast.makeText(this, "Destino inválido!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Destino inválido!", Toast.LENGTH_LONG).show();
         }
 
     }
 
-    private void enviarRequisicaoGetApi(String atual, String destino, String data, String horario) {
+    private void enviarRequisicaoGetApi(String atual, String destino, String data) {
 
         // Testa retorno http
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -165,7 +164,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
                 .build();
 
         RotaServices rota = retrofit.create(RotaServices.class);
-        Call<List<Usuario>> call = rota.buscarRota(atual, destino, data, horario);
+        Call<List<Usuario>> call = rota.buscarRota(atual, destino, data);
 
         call.enqueue(new Callback<List<Usuario>>() {
             @Override
@@ -182,7 +181,7 @@ public class BuscarCaronasActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Usuario>> call, Throwable t) {
 
-                Toast.makeText(BuscarCaronasActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BuscarCaronasActivity.this, "Erro ao conectar a API, verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
 
             }
         });

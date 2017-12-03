@@ -8,7 +8,7 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <user-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -53,14 +53,14 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ListarCaronaActivity"
-            android:label="Listar caronas"
+            android:label="Escolher caronas"
             android:parentActivityName=".BuscarCaronasActivity" />
         <activity
             android:name=".ReservarCaronaActivity"
             android:label="Reservar carona" />
         <activity
             android:name=".MinhasBuscasCarona"
-            android:label="Minhas caronas procuradas"
+            android:label="Minhas Reservas"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MinhasOfertasCarona"
@@ -68,7 +68,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ConfirmarCaronaActivity"
-            android:label="Aprovar caronas" />
+            android:label="Aprovar Usuários" />
         <activity
             android:name=".SplashScreen"
             android:label="Tamo Junto"
@@ -89,7 +89,7 @@
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".AprovarCaronaActivity"
-            android:label="Aprovar caronas"
+            android:label="Aprovar Caronas"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>

@@ -9,26 +9,109 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             app:srcCompat="@drawable/buscar_carona"
-            android:layout_below="@+id/button4"
-            android:layout_alignLeft="@+id/imageView2"
-            android:layout_alignStart="@+id/imageView2"
-            android:layout_marginTop="43dp" />
+            android:layout_marginRight="22dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginTop="41dp"
+            android:onClick="buscarCarona"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             app:srcCompat="@drawable/oferecer_carona"
-            android:layout_marginTop="19dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:onClick="oferecerCarona"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:onClick="aprovarCarona"
+            app:srcCompat="@drawable/aprovar_carona"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_alignLeft="@+id/textView20"
+            android:layout_alignStart="@+id/textView20" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            app:srcCompat="@drawable/minhas_reservas"
+            android:onClick="minhasReservas"
+            android:layout_marginTop="65dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Procurar Carona"
+        android:onClick="buscarCarona"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/textView20"
+        android:layout_alignBottom="@+id/textView20"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginTop="14dp"
+        android:text="Oferecer Carona"
+        android:onClick="oferecerCarona"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Minhas Reservas"
+        android:onClick="minhasReservas"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/textView22"
+        android:layout_alignBottom="@+id/textView22"
+        android:layout_alignLeft="@+id/imageView4"
+        android:layout_alignStart="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3"
+        android:layout_below="@+id/imageView3"
+        android:layout_marginTop="17dp"
+        android:text="Aprovar Caronas"
+        android:onClick="aprovarCarona"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
-    <Button
+    <!--<Button
         android:id="@+id/button3"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
@@ -36,11 +119,12 @@
         android:onClick="buscarCarona"
         android:background="@color/colorRoxo"
         android:textColor="@color/colorBranco"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="89dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />-->
 
-    <Button
+    <!--<Button
         android:id="@+id/button4"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
@@ -48,10 +132,10 @@
         android:background="@color/colorVermelho"
         android:textColor="@color/colorBranco"
         android:onClick="oferecerCarona"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/imageView2"
+        android:layout_above="@+id/button3"
         android:layout_alignLeft="@+id/button3"
-        android:layout_alignStart="@+id/button3" />
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginBottom="47dp" />-->
 
 
 
